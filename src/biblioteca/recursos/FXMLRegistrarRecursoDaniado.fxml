@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" onDragDetected="#clicBttnRegistrar" prefHeight="800.0" prefWidth="1360.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="biblioteca.recursos.FXMLRegistrarRecursoDaniadoController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00519e" height="72.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1360.0" />
+      <Label layoutX="461.0" layoutY="10.0" text="Registrar Recurso Dañado" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="36.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfIdentificadorRecurso" layoutX="340.0" layoutY="161.0" prefHeight="30.0" prefWidth="680.0" promptText="Ingresar identificador del recurso">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <Label layoutX="340.0" layoutY="134.0" text="Buscar recurso por identificador">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tvRecursos" layoutX="340.0" layoutY="213.0" prefHeight="500.0" prefWidth="680.0">
+        <columns>
+          <TableColumn fx:id="tcNombre" prefWidth="260.0" text="Nombre" />
+          <TableColumn fx:id="tcAutor" prefWidth="260.0" text="Autor" />
+            <TableColumn fx:id="tcIdBiblioteca" prefWidth="160.0" text="Id Biblioteca" />
+        </columns>
+      </TableView>
+      <Button layoutX="641.0" layoutY="755.0" mnemonicParsing="false" style="-fx-background-color: #00519e;" text="Registrar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

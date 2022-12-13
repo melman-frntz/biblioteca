@@ -1,11 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.prestamos.FXMLControlDePrestamosController">
-    
+<AnchorPane id="AnchorPane" prefHeight="717.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.prestamos.FXMLControlDePrestamosController">
+   <children>
+      <Button alignment="BASELINE_LEFT" layoutX="364.0" layoutY="53.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Registrar prestamo en sala" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../iconos/Sala.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button alignment="BASELINE_LEFT" layoutX="364.0" layoutY="179.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Registrar prestamo a domicilio" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../iconos/Home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button alignment="BASELINE_LEFT" layoutX="364.0" layoutY="307.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Registrar devolucion" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../iconos/Devolucion.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button alignment="BASELINE_LEFT" layoutX="364.0" layoutY="435.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Solicitar renovacion" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../iconos/Renovacion.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button alignment="BASELINE_LEFT" layoutX="364.0" layoutY="562.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Prestamo interbibliotecario" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../iconos/Interbibliotecario.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
 </AnchorPane>

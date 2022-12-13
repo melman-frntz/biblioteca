@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.recursos.FXMLBuscarRecursoController">
+   <children>
+      <TextField fx:id="tfNombreRecurso" layoutX="340.0" layoutY="151.0" prefHeight="30.0" prefWidth="600.0" promptText="Ingresar Recurso">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <Label layoutX="343.0" layoutY="124.0" text="Nombre del recurso">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="940.0" layoutY="151.0" mnemonicParsing="false" onAction="#clicBttnBuscar" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #1D8348;" text="Buscar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TableView fx:id="tvRecursos" layoutX="340.0" layoutY="211.0" prefHeight="500.0" prefWidth="680.0">
+        <columns>
+          <TableColumn fx:id="tcNombre" prefWidth="255.0" text="Nombre" />
+          <TableColumn fx:id="tcAutor" prefWidth="255.0" text="Autor" />
+            <TableColumn fx:id="tcIdBiblioteca" prefWidth="169.0" text="Id Biblioteca" />
+        </columns>
+      </TableView>
+      <Button layoutX="640.0" layoutY="747.0" mnemonicParsing="false" onAction="#clicBttnMostrar" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #00519E;" text="Mostrar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00519e" height="72.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1360.0" />
+      <Label layoutX="553.0" layoutY="10.0" text="Buscar Recurso" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbErrorBuscarRecurso" layoutX="343.0" layoutY="182.0" textFill="RED" />
+   </children>
+</AnchorPane>

@@ -1,11 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.papeleo.FXMLPapeleoController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="717.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.papeleo.FXMLPapeleoController">
+   <children>
+      <Button alignment="BASELINE_LEFT" layoutX="384.0" layoutY="127.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Expedir constancia" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../iconos/Constancia.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="BASELINE_LEFT" layoutX="384.0" layoutY="253.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Reporte de estadistica de uso" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../iconos/Estadistica%20de%20uso.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="BASELINE_LEFT" layoutX="384.0" layoutY="381.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Reporte de recurso perdido" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../iconos/Recurso%20perdido.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="BASELINE_LEFT" layoutX="384.0" layoutY="509.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Registrar cobro de adeudo" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../iconos/Cobro%20de%20adeudo.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
 </AnchorPane>
