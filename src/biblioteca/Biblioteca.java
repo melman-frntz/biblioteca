@@ -10,7 +10,7 @@ public class Biblioteca extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));        
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLInicioSesion.fxml"));        
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);        

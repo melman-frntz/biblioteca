@@ -11,15 +11,19 @@ public class RecursoDocumental {
     private String descripcion;
     private String seccion;
     private String editorial;
-    private double isbn;
+    private String isbn;
     private double peso;
     private int duracion;
     private int idBiblioteca;
+    private String estado;
+    private String folio;
+    private String procedencia;
+    private String tipoRecurso;
 
     public RecursoDocumental() {
     }
 
-    public RecursoDocumental(int idRecurso, String nombre, String autor, String descripcion, String seccion, String editorial, double isbn, double peso, int duracion, int idBiblioteca) {
+    public RecursoDocumental(int idRecurso, String nombre, String autor, String descripcion, String seccion, String editorial, String isbn, double peso, int duracion, int idBiblioteca, String estado, String folio, String procedencia, String tipoRecurso) {
         this.idRecurso = idRecurso;
         this.nombre = nombre;
         this.autor = autor;
@@ -30,6 +34,10 @@ public class RecursoDocumental {
         this.peso = peso;
         this.duracion = duracion;
         this.idBiblioteca = idBiblioteca;
+        this.estado = estado;
+        this.folio = folio;
+        this.procedencia = procedencia;
+        this.tipoRecurso = tipoRecurso;
     }
 
     public int getIdRecurso() {
@@ -56,7 +64,7 @@ public class RecursoDocumental {
         return editorial;
     }
 
-    public double getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
@@ -70,6 +78,22 @@ public class RecursoDocumental {
 
     public int getIdBiblioteca() {
         return idBiblioteca;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public String getFolio() {
+        return folio;
+    }
+
+    public String getProcedencia() {
+        return procedencia;
+    }
+
+    public String getTipoRecurso() {
+        return tipoRecurso;
     }
 
     public void setIdRecurso(int idRecurso) {
@@ -96,7 +120,7 @@ public class RecursoDocumental {
         this.editorial = editorial;
     }
 
-    public void setIsbn(double isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -110,5 +134,21 @@ public class RecursoDocumental {
 
     public void setIdBiblioteca(int idBiblioteca) {
         this.idBiblioteca = idBiblioteca;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public void setFolio(String folio) {
+        this.folio = folio;
+    }
+
+    public void setProcedencia(String procedencia) {
+        this.procedencia = procedencia;
+    }
+
+    public void setTipoRecurso(String tipoRecurso) {
+        this.tipoRecurso = tipoRecurso;
     }
 }

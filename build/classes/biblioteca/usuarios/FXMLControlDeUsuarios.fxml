@@ -10,7 +10,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="717.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.usuarios.FXMLControlDeUsuariosController">
    <children>
-      <Button alignment="BASELINE_LEFT" layoutX="394.0" layoutY="371.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Renovar usuario" textFill="WHITE">
+      <Button alignment="BASELINE_LEFT" disable="true" layoutX="394.0" layoutY="371.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Renovar usuario" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -25,7 +25,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="BASELINE_LEFT" layoutX="394.0" layoutY="245.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Registrar usuario" textFill="WHITE">
+      <Button alignment="BASELINE_LEFT" disable="true" layoutX="394.0" layoutY="245.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Registrar usuario" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
