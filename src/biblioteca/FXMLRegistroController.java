@@ -1,9 +1,13 @@
 package biblioteca;
 
+import biblioteca.modelo.dao.UsuarioStaffDAO;
+import biblioteca.modelo.pojo.ResultadoOperacion;
+import biblioteca.modelo.pojo.UsuarioStaff;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -56,7 +60,7 @@ public class FXMLRegistroController implements Initializable {
     @FXML
     private void clicBttnOpcionCompletarRegistro(ActionEvent event) {
         if(verificarCamposLlenos()){
-            //TODO registro DAO
+            registrarUsuarioStaff();
         }
     }
 
@@ -105,5 +109,24 @@ public class FXMLRegistroController implements Initializable {
             lbAdvertencia.setText("¡Verifique que todos los campos esten llenos!");
         }
         return valido;
+    }
+    
+    private void registrarUsuarioStaff(){
+        UsuarioStaff usuarioStaff = new UsuarioStaff();
+        usuarioStaff.setNumeroDePersonal(txtNoPersonal.getText());
+        usuarioStaff.setContraseña(txtPassword.getText());
+        usuarioStaff.setTipoUsuario(cbTipoUsuario.getValue());
+        
+        try{
+            ResultadoOperacion resultadoGuardar = UsuarioStaffDAO.registrarUsuarioStaff(usuarioStaff, archivoFotoUsuarioStaff);
+            if(!resultadoGuardar.isError()){
+                Utilidades.mostrarAlertaSimple("Usuario staff registrado", resultadoGuardar.getMensaje(), Alert.AlertType.INFORMATION);
+                cerrarVentana();
+            }else{
+                Utilidades.mostrarAlertaSimple("Error al guardar", resultadoGuardar.getMensaje(), Alert.AlertType.ERROR);
+            }
+        }catch(SQLException ex){
+            Utilidades.mostrarAlertaSimple("Error de conexion", "No hay conexion con la base de datos.", Alert.AlertType.ERROR);
+        }
     }
 }
