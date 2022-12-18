@@ -3,11 +3,15 @@ package biblioteca.modelo.dao;
 import biblioteca.modelo.ConexionBaseDatos;
 import biblioteca.modelo.pojo.RecursoDocumental;
 import biblioteca.modelo.pojo.ResultadoOperacion;
+import biblioteca.modelo.pojo.UsuarioBiblioteca;
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javafx.scene.control.Alert;
+import utilidades.Utilidades;
 
 /**
  * @autor Froylan De Jesus Alvarez Rodriguez
@@ -123,5 +127,121 @@ public class RecursoDocumentalDAO {
         }
         
         return respuesta;
+    }
+    
+    public static RecursoDocumental buscarRecursoPorNombre(String nombre) throws SQLException{
+        RecursoDocumental recursoBD = null;
+        Connection conexionBD = ConexionBaseDatos.abrirConexionBaseDatos();
+        
+        if(conexionBD != null){
+            try{
+                String consulta = "SELECT * FROM recursodocumental WHERE nombre = ? AND estado = ?";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+                prepararSentencia.setString(1, nombre);
+                prepararSentencia.setString(2, "Disponible");
+                ResultSet resultadoConsulta = prepararSentencia.executeQuery();
+                recursoBD = new RecursoDocumental();
+                
+                if(resultadoConsulta.next()){
+                    recursoBD.setIdRecurso(resultadoConsulta.getInt("id"));
+                    recursoBD.setIdBiblioteca(resultadoConsulta.getInt("idBiblioteca"));
+                    recursoBD.setFolio(resultadoConsulta.getString("folio"));
+                    recursoBD.setNombre(resultadoConsulta.getString("nombre"));
+                    recursoBD.setAutor(resultadoConsulta.getString("autor"));
+                    recursoBD.setDescripcion(resultadoConsulta.getString("descripcion"));
+                    recursoBD.setSeccion(resultadoConsulta.getString("seccion"));
+                    recursoBD.setEstado(resultadoConsulta.getString("estado"));
+                    recursoBD.setProcedencia(resultadoConsulta.getString("procedencia"));
+                    recursoBD.setTipoRecurso(resultadoConsulta.getString("tipoRecurso"));
+                    recursoBD.setEditorial(resultadoConsulta.getString("editorial"));
+                    recursoBD.setIsbn(resultadoConsulta.getString("isbn"));
+                    recursoBD.setPeso(resultadoConsulta.getDouble("peso"));
+                    recursoBD.setDuracion(resultadoConsulta.getInt("duracion"));
+                }else{
+                    recursoBD = null;
+                }
+                
+            }catch(SQLException sqlExcepcion){
+                sqlExcepcion.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+        }else{
+            Utilidades.mostrarAlertaSimple("Error de conexion", "No hay conexion con la base de datos.", Alert.AlertType.ERROR);
+        }
+        
+        return recursoBD;
+    }
+    
+    public static ArrayList<RecursoDocumental> obtenerNombreRecursoPrestamosRenovacion(UsuarioBiblioteca usuario) throws SQLException{
+        ArrayList<RecursoDocumental> recursosBD = null;
+        Connection conexionBD = ConexionBaseDatos.abrirConexionBaseDatos();
+        
+        if(conexionBD != null){
+            try{
+                String consulta = "SELECT recursoDocumental.nombre, recursoDocumental.id FROM recursoDocumental "
+                        + "INNER JOIN Prestamo ON recursoDocumental.id = Prestamo.idRecurso INNER JOIN UsuarioBiblioteca ON "
+                        + "Prestamo.idUsuarioBiblioteca = UsuarioBiblioteca.idUsuarioBiblioteca WHERE "
+                        + "UsuarioBiblioteca.nombre = ? AND Prestamo.fechaEntrega > ?";
+                
+                Date fechaUtil = new Date();
+                java.sql.Date fechaSQL = new java.sql.Date(fechaUtil.getTime());
+                
+                PreparedStatement consultaPrestamosUsuario = conexionBD.prepareStatement(consulta);
+                consultaPrestamosUsuario.setString(1, usuario.getNombre());
+                consultaPrestamosUsuario.setDate(2, fechaSQL);
+                ResultSet resultadoConsulta = consultaPrestamosUsuario.executeQuery();
+                recursosBD = new ArrayList<>();
+                
+                while(resultadoConsulta.next()){
+                    RecursoDocumental temp = new RecursoDocumental();
+                    temp.setIdRecurso(resultadoConsulta.getInt("id"));
+                    temp.setNombre(resultadoConsulta.getString("nombre"));
+                    recursosBD.add(temp);
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+        }else{
+            Utilidades.mostrarAlertaSimple("Error", "Falló la conexión con la base de datos.\nInténtelo más tarde", 
+                    Alert.AlertType.ERROR);
+        }
+        return recursosBD;
+    }
+    
+    public static ArrayList<RecursoDocumental> obtenerNombreRecursoPrestamos(UsuarioBiblioteca usuario) throws SQLException{
+        ArrayList<RecursoDocumental> recursosBD = null;
+        Connection conexionBD = ConexionBaseDatos.abrirConexionBaseDatos();
+        
+        if(conexionBD != null){
+            try{
+                String consulta = "SELECT recursoDocumental.nombre, recursoDocumental.id FROM recursoDocumental "
+                        + "INNER JOIN Prestamo ON recursoDocumental.id = Prestamo.idRecurso INNER JOIN UsuarioBiblioteca ON "
+                        + "Prestamo.idUsuarioBiblioteca = UsuarioBiblioteca.idUsuarioBiblioteca WHERE "
+                        + "UsuarioBiblioteca.nombre = ?";
+                
+                PreparedStatement consultaPrestamosUsuario = conexionBD.prepareStatement(consulta);
+                consultaPrestamosUsuario.setString(1, usuario.getNombre());
+                ResultSet resultadoConsulta = consultaPrestamosUsuario.executeQuery();
+                recursosBD = new ArrayList<>();
+                
+                while(resultadoConsulta.next()){
+                    RecursoDocumental temp = new RecursoDocumental();
+                    temp.setIdRecurso(resultadoConsulta.getInt("id"));
+                    temp.setNombre(resultadoConsulta.getString("nombre"));
+                    recursosBD.add(temp);
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+        }else{
+            Utilidades.mostrarAlertaSimple("Error", "Falló la conexión con la base de datos.\nInténtelo más tarde", 
+                    Alert.AlertType.ERROR);
+        }
+        return recursosBD;
     }
 }

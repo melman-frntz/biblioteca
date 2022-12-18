@@ -1,5 +1,6 @@
 package biblioteca.recursos;
 
+import biblioteca.modelo.pojo.UsuarioStaff;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,10 +12,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class FXMLControlDeRecursosController implements Initializable {
+
+    @FXML
+    private Button bttnOpcionRegistrarRecurso;
+    @FXML
+    private Button bttnOpcionBuscarRecurso;
 
     /**
      * Initializes the controller class.
@@ -61,5 +68,5 @@ public class FXMLControlDeRecursosController implements Initializable {
             Logger.getLogger(FXMLControlDeRecursosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

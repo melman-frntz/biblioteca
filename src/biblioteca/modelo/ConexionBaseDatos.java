@@ -11,8 +11,8 @@ public class ConexionBaseDatos {
     private static String PUERTO = "3306";
     private static String URL = "jdbc:mysql://" + IP + ":" + PUERTO + "/" + BASEDATOS + "?allowPublicKeyRetrieval=true&useSSL=false";
     
-    private static String USUARIO = "";
-    private static String CONTRASENIA = "";
+    private static String USUARIO = "root";
+    private static String CONTRASENIA = "Mcould1_Y7";
     
     public static Connection abrirConexionBaseDatos(){
         Connection dbConnection = null;

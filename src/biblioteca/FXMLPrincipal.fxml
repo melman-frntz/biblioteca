@@ -153,6 +153,24 @@
                                  </image></ImageView>
                            </graphic>
                         </Button>
+                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#clicBttnOpcionCerrarSesion" prefHeight="60.0" prefWidth="278.0" style="-fx-background-color: #00519E;" text="Cerrar sesion" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../iconos/Cerrar%20sesion.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </Button>
                      </children>
                   </VBox>
                   <Label alignment="BASELINE_LEFT" layoutY="-1.0" prefHeight="75.0" prefWidth="268.0" text="Opciones" textFill="WHITE">

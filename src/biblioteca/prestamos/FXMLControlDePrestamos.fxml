@@ -25,7 +25,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button alignment="BASELINE_LEFT" layoutX="364.0" layoutY="179.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Registrar prestamo a domicilio" textFill="WHITE">
+      <Button fx:id="bttnOpcionRegistrarPrestamoDomicilio" alignment="BASELINE_LEFT" layoutX="364.0" layoutY="179.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Registrar prestamo a domicilio" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
@@ -40,7 +40,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button alignment="BASELINE_LEFT" layoutX="364.0" layoutY="307.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Registrar devolucion" textFill="WHITE">
+      <Button fx:id="bttnOpcionRegistrarDevolucion" alignment="BASELINE_LEFT" layoutX="364.0" layoutY="307.0" mnemonicParsing="false" onAction="#clicBttnOpcionRegistrarDevolucion" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Registrar devolucion" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
@@ -55,7 +55,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button alignment="BASELINE_LEFT" layoutX="364.0" layoutY="435.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Solicitar renovacion" textFill="WHITE">
+      <Button fx:id="bttnSolicitarRenovacion" alignment="BASELINE_LEFT" layoutX="364.0" layoutY="435.0" mnemonicParsing="false" onAction="#clicBttnOpcionSolicitarRenovacion" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Solicitar renovacion" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
@@ -70,7 +70,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button alignment="BASELINE_LEFT" layoutX="364.0" layoutY="562.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Prestamo interbibliotecario" textFill="WHITE">
+      <Button fx:id="bttnOpcionPrestamoInterbibliotecario" alignment="BASELINE_LEFT" layoutX="364.0" layoutY="562.0" mnemonicParsing="false" onAction="#clicBttnOpcionPrestamoInterbibliotecario" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Prestamo interbibliotecario" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>

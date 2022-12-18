@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="664.0" prefWidth="1097.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.prestamos.FXMLDevolucionRenovacionController">
+   <children>
+      <Label fx:id="lbTitulo" layoutX="54.0" layoutY="74.0" text="Registrar devolución">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfIdentificador" layoutX="255.0" layoutY="175.0" prefHeight="31.0" prefWidth="307.0" promptText="Identificador de usuario" />
+      <Button layoutX="615.0" layoutY="175.0" mnemonicParsing="false" onAction="#buscarUsuario" text="Buscar" />
+      <Label layoutX="70.0" layoutY="283.0" text="Nombre:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="342.0" text="Correo:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="397.0" text="Dirección:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="455.0" text="Teléfono:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbNombreUsuario" layoutX="204.0" layoutY="283.0" prefHeight="26.0" prefWidth="325.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbCorreoUsuario" layoutX="204.0" layoutY="342.0" prefHeight="26.0" prefWidth="325.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbDireccionUsuario" layoutX="204.0" layoutY="397.0" prefHeight="26.0" prefWidth="325.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbTelefonoUsuario" layoutX="204.0" layoutY="455.0" prefHeight="26.0" prefWidth="325.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tvRecursos" layoutX="572.0" layoutY="284.0" prefHeight="200.0" prefWidth="502.0">
+         <columns>
+            <TableColumn fx:id="tcRecursoDocumental" prefWidth="501.0" text="Préstamos activos" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnDevolucion" layoutX="667.0" layoutY="576.0" mnemonicParsing="false" onAction="#registrarDevolucion" text="Registrar devolución" />
+      <Button fx:id="btnRenovacion" layoutX="881.0" layoutY="576.0" mnemonicParsing="false" onAction="#solicitarRenovacion" text="Solicitar renovación" />
+      <Button layoutX="541.0" layoutY="576.0" mnemonicParsing="false" onAction="#volver" text="Volver" />
+   </children>
+</AnchorPane>

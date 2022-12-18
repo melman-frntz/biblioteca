@@ -16,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utilidades.Utilidades;
 
@@ -83,6 +84,26 @@ public class FXMLInicioSesionController implements Initializable {
             Stage escenarioBase = (Stage) tfNoPersonal.getScene().getWindow();
             escenarioBase.setScene(escenaPrincipal);
             escenarioBase.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void clicBttnRegistro(ActionEvent event) {
+        irPantallaRegistro();
+    }
+    
+    private void irPantallaRegistro(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLRegistro.fxml"));
+            Parent ventanaRegistro = fxmlLoader.load();
+            Scene escenarioRegistro = new Scene(ventanaRegistro);
+            Stage nuevoEscenarioRegistro = new Stage();
+            nuevoEscenarioRegistro.setScene(escenarioRegistro);
+            nuevoEscenarioRegistro.initModality(Modality.APPLICATION_MODAL);
+            nuevoEscenarioRegistro.setResizable(false); 
+            nuevoEscenarioRegistro.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

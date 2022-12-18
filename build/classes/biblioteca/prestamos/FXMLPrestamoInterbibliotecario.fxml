@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1360.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.prestamos.FXMLPrestamoInterbibliotecarioController">
+   <children>
+      <Pane prefHeight="72.0" prefWidth="1360.0" style="-fx-background-color: #00519E;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="389.0" layoutY="10.0" text="Registrar prestamo interbibliotecario" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="89.0" layoutY="150.0" text="Datos del usuario">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtIdUsuario" layoutX="260.0" layoutY="209.0" prefHeight="31.0" prefWidth="390.0" promptText="Matricula o No. Personal de usuario" />
+      <TextField fx:id="txtNombreUsuario" layoutX="787.0" layoutY="209.0" prefHeight="31.0" prefWidth="475.0" promptText="Nombre del usuario" />
+      <TextField fx:id="txtDestino" layoutX="175.0" layoutY="271.0" prefHeight="31.0" prefWidth="475.0" promptText="Destino" />
+      <Label layoutX="89.0" layoutY="214.0" text="Matricula/No. Personal:" />
+      <Label layoutX="705.0" layoutY="214.0" text="Nombre:" />
+      <Label layoutX="89.0" layoutY="276.0" text="Destino:" />
+      <DatePicker fx:id="dpFechaInicio" layoutX="192.0" layoutY="328.0" prefHeight="31.0" prefWidth="221.0" promptText="DD/MM/AAAA" />
+      <Label layoutX="89.0" layoutY="333.0" text="Fecha inicio:" />
+      <Label layoutX="705.0" layoutY="333.0" text="Fecha enttrega:" />
+      <DatePicker fx:id="dpFechaEntrega" layoutX="828.0" layoutY="328.0" promptText="DD/MM/AAAA" />
+      <Label layoutX="89.0" layoutY="392.0" text="Nombre del recurso documental:" />
+      <TextField fx:id="txtBusquedaRecurso" layoutX="332.0" layoutY="387.0" prefHeight="31.0" prefWidth="835.0" promptText="Introduzca " />
+      <Button layoutX="1167.0" layoutY="387.0" mnemonicParsing="false" onAction="#clicBttnOpcionBuscar" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: #00AB4F;" text="Buscar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField fx:id="txtFolio" editable="false" layoutX="175.0" layoutY="511.0" prefHeight="31.0" prefWidth="239.0" promptText="Folio" />
+      <Label layoutX="89.0" layoutY="451.0" text="Datos del recurso documental">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="89.0" layoutY="516.0" text="Folio:" />
+      <Label layoutX="89.0" layoutY="579.0" text="Nombre:" />
+      <Label layoutX="87.0" layoutY="646.0" text="Autor:" />
+      <Label layoutX="705.0" layoutY="516.0" text="Tipo de recurso:" />
+      <TextField fx:id="txtTipoRecurso" editable="false" layoutX="828.0" layoutY="511.0" prefHeight="31.0" prefWidth="239.0" promptText="Tipo de recurso" />
+      <TextField fx:id="txtNombreRecurso" editable="false" layoutX="175.0" layoutY="574.0" prefHeight="31.0" prefWidth="892.0" promptText="Nombre del recurso" />
+      <TextField fx:id="txtAutorRecurso" editable="false" layoutX="175.0" layoutY="641.0" prefHeight="31.0" prefWidth="892.0" promptText="Autor del recurso" />
+      <Button layoutX="990.0" layoutY="721.0" mnemonicParsing="false" onAction="#clicBttnOpcionCancelar" style="-fx-background-color: #00AB4F;" text="Cancelar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="1121.0" layoutY="721.0" mnemonicParsing="false" onAction="#clicBttnOpcionGuardarPrestamo" style="-fx-background-color: #00AB4F;" text="Guardar prestamo" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
