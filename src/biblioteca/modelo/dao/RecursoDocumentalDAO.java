@@ -129,15 +129,15 @@ public class RecursoDocumentalDAO {
         return respuesta;
     }
     
-    public static RecursoDocumental buscarRecursoPorNombre(String nombre) throws SQLException{
+    public static RecursoDocumental buscarRecursoPorFolio(String folio) throws SQLException{
         RecursoDocumental recursoBD = null;
         Connection conexionBD = ConexionBaseDatos.abrirConexionBaseDatos();
         
         if(conexionBD != null){
             try{
-                String consulta = "SELECT * FROM recursodocumental WHERE nombre = ? AND estado = ?";
+                String consulta = "SELECT * FROM recursodocumental WHERE folio = ? AND estado = ?";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
-                prepararSentencia.setString(1, nombre);
+                prepararSentencia.setString(1, folio);
                 prepararSentencia.setString(2, "Disponible");
                 ResultSet resultadoConsulta = prepararSentencia.executeQuery();
                 recursoBD = new RecursoDocumental();
@@ -243,5 +243,97 @@ public class RecursoDocumentalDAO {
                     Alert.AlertType.ERROR);
         }
         return recursosBD;
+    }
+    
+    public static ArrayList<RecursoDocumental> buscarRecursoDocumentalPorId(String idRecursoDocumental) throws SQLException{
+        ArrayList<RecursoDocumental> recursosBD = null;
+        Connection conexionBD = ConexionBaseDatos.abrirConexionBaseDatos();
+        
+        if(conexionBD != null){
+            try{
+                String consulta = "SELECT id, nombre, autor, tipoRecurso, seccion FROM recursodocumental WHERE idBiblioteca = ?";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+                prepararSentencia.setString(1, idRecursoDocumental);
+                ResultSet resultadoConsulta = prepararSentencia.executeQuery();
+                recursosBD = new ArrayList<>();
+                
+                while(resultadoConsulta.next()){
+                    RecursoDocumental recursoTemporal = new RecursoDocumental();
+                    recursoTemporal.setIdRecurso(resultadoConsulta.getInt("id"));
+                    recursoTemporal.setNombre(resultadoConsulta.getString("nombre"));
+                    recursoTemporal.setAutor(resultadoConsulta.getString("autor"));
+                    recursoTemporal.setSeccion(resultadoConsulta.getString("seccion"));
+                    recursoTemporal.setTipoRecurso(resultadoConsulta.getString("tipoRecurso"));
+                    recursosBD.add(recursoTemporal);
+                }
+                
+            }catch(SQLException sqlExcepcion){
+                sqlExcepcion.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+        }
+        
+        return recursosBD;
+    }
+    
+    public static int obtenerIdRecursoDocumental(String folio) throws SQLException{
+        int idRecurso = -1;
+        Connection conexionBD = ConexionBaseDatos.abrirConexionBaseDatos();
+        
+        if(conexionBD != null){
+            try{
+                String consulta = "SELECT id FROM recursodocumental WHERE folio = ?";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+                prepararSentencia.setString(1, folio);
+                ResultSet resultadoConsulta = prepararSentencia.executeQuery();
+                
+                if(resultadoConsulta.next()){
+                    idRecurso = resultadoConsulta.getInt("id");
+                }else{
+                    idRecurso = -1;
+                }
+                
+            }catch(SQLException sqlExcepcion){
+                sqlExcepcion.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+        }else{
+            Utilidades.mostrarAlertaSimple("Error de conexion", "No hay conexion con la base de datos.", Alert.AlertType.ERROR);
+        }
+        
+        return idRecurso;
+    }
+    
+    public static ResultadoOperacion actualizarEstadoRecursoDocumental(String folio) throws SQLException{
+        ResultadoOperacion respuesta = new ResultadoOperacion();
+        respuesta.setError(true);
+        respuesta.setFilasAfectadas(-1);
+        Connection conexionBD = ConexionBaseDatos.abrirConexionBaseDatos();
+        
+        if(conexionBD != null){
+            try{
+                String sentencia = "UPDATE recursodocumental SET estado = ? WHERE folio = ?";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setString(1, "Prestado");
+                prepararSentencia.setString(2, folio);
+                
+                int filasAfectadas = prepararSentencia.executeUpdate();
+                
+                if(filasAfectadas > 0){
+                    respuesta.setError(false);
+                    respuesta.setFilasAfectadas(filasAfectadas);
+                }
+            }catch(SQLException sqlExcepcion){
+                respuesta.setMensaje(sqlExcepcion.getMessage());
+            }finally{
+                conexionBD.close();
+            }
+        }else{
+            respuesta.setMensaje("No hay conexión con la base de datos.");
+        }
+        
+        return respuesta;
     }
 }

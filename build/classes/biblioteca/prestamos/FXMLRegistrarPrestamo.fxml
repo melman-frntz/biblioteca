@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.prestamos.FXMLRegistrarPrestamoController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00519e" height="72.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1360.0" />
+      <Label layoutX="519.0" layoutY="10.0" text="Registrar préstamo" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="36.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfIdUsuario" layoutX="468.0" layoutY="117.0" prefHeight="28.0" prefWidth="424.0" promptText="Matricula o No. Personal">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </TextField>
+      <Label layoutX="468.0" layoutY="82.0" text="Identificador de usuario">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Button layoutX="892.0" layoutY="117.0" mnemonicParsing="false" onAction="#clicBtnBuscarUsuario" prefHeight="42.0" prefWidth="65.0" style="-fx-background-color: #1D8348;" text="Buscar" textFill="WHITE" />
+      <TableView fx:id="tvUsuario" layoutX="212.0" layoutY="196.0" prefHeight="151.0" prefWidth="910.0">
+        <columns>
+          <TableColumn fx:id="colNombreUsuario" prefWidth="242.0" text="NOMBRE" />
+          <TableColumn fx:id="colTelUsuario" prefWidth="192.0" text="TELEFONO" />
+            <TableColumn fx:id="colDomicilioUsuario" prefWidth="296.0" text="DOMICILIO" />
+            <TableColumn fx:id="colCorreoUsuario" prefWidth="179.0" text="CORREO" />
+        </columns>
+      </TableView>
+      <Label fx:id="lbErrorIdUsuario" layoutX="468.0" layoutY="168.0" prefHeight="21.0" prefWidth="306.0" textFill="#cd1111" />
+      <Label layoutX="468.0" layoutY="386.0" text="Identificador recurso documental">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfIdRecursoDocumental" layoutX="468.0" layoutY="416.0" prefHeight="42.0" prefWidth="424.0" promptText="Id asignado en la biblioteca">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </TextField>
+      <Button layoutX="892.0" layoutY="416.0" mnemonicParsing="false" onAction="#clicBtnBuscarRecursoDocumental" prefHeight="42.0" prefWidth="65.0" style="-fx-background-color: #1D8348;" text="Buscar" textFill="WHITE" />
+      <Label fx:id="lbErrorIdRecurso" layoutX="468.0" layoutY="475.0" prefHeight="21.0" prefWidth="306.0" textFill="#c31717" />
+      <TableView fx:id="tvRecursoDocumental" layoutX="212.0" layoutY="534.0" prefHeight="141.0" prefWidth="910.0">
+        <columns>
+          <TableColumn fx:id="colNombreRecurso" prefWidth="281.0" text="NOMBRE" />
+          <TableColumn fx:id="colAutorRecurso" minWidth="0.0" prefWidth="243.0" text="AUTOR" />
+            <TableColumn fx:id="colTipoRecurso" prefWidth="191.0" text="TIPO RECURSO" />
+            <TableColumn fx:id="colSecciónRecurso" prefWidth="194.0" text="SECCIÓN" />
+        </columns>
+      </TableView>
+      <Button layoutX="1246.0" layoutY="739.0" mnemonicParsing="false" onAction="#clicBtnContinuar" style="-fx-background-color: #1D8348;" text="Continuar" textFill="WHITE" />
+      <Button layoutX="39.0" layoutY="739.0" mnemonicParsing="false" onAction="#clicBtnCancelar" style="-fx-background-color: #1D8348;" text="Cancelar" textFill="WHITE" />
+   </children>
+</AnchorPane>

@@ -1,9 +1,17 @@
 package biblioteca.prestamos;
 
+import biblioteca.modelo.dao.PrestamoDAO;
 import biblioteca.modelo.dao.RecursoDocumentalDAO;
+import biblioteca.modelo.dao.UsuarioBibliotecaDAO;
+import biblioteca.modelo.pojo.Prestamo;
 import biblioteca.modelo.pojo.RecursoDocumental;
+import biblioteca.modelo.pojo.ResultadoOperacion;
+import biblioteca.modelo.pojo.UsuarioBiblioteca;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,10 +28,6 @@ public class FXMLPrestamoInterbibliotecarioController implements Initializable {
     @FXML
     private TextField txtDestino;
     @FXML
-    private DatePicker dpFechaInicio;
-    @FXML
-    private DatePicker dpFechaEntrega;
-    @FXML
     private TextField txtBusquedaRecurso;
     @FXML
     private TextField txtFolio;
@@ -37,13 +41,21 @@ public class FXMLPrestamoInterbibliotecarioController implements Initializable {
     private TextField txtNombreUsuario;
     @FXML
     private TextField txtIdUsuario;
+    @FXML
+    private TextField txtCarrera;
+    @FXML
+    private TextField txtFechaInicio;
+    @FXML
+    private TextField txtFechaEntrega;
+    @FXML
+    private TextField txtOrigen;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        InicializarFechas();
     }
 
     @FXML
@@ -53,48 +65,158 @@ public class FXMLPrestamoInterbibliotecarioController implements Initializable {
 
     @FXML
     private void clicBttnOpcionBuscar(ActionEvent event) {
-        if(txtBusquedaRecurso.getText() != null){
             buscarRecursoDocumental();
-        }else{
-            Utilidades.mostrarAlertaSimple("Campo de busqueda vacio", "El campo de busqueda debe estar lleno.", Alert.AlertType.INFORMATION);
-        }
     }
 
     @FXML
     private void clicBttnOpcionGuardarPrestamo(ActionEvent event) {
+        boolean camposLlenos = validarCamposLlenos();
+        boolean numeroPrestamosExcedidos = validarNumeroPrestamos();
+        if(camposLlenos){
+            if(numeroPrestamosExcedidos == false){
+                registrarPrestamo();
+                actualizarEstadoRecursoDocumental();
+                limpiarCampos();
+            }else{
+                Utilidades.mostrarAlertaSimple("Prestamos excedidos", "El usuario de la biblioteca excedio los prestamos permitidos.", Alert.AlertType.INFORMATION);
+                limpiarCampos();
+            }
+        }else{
+            Utilidades.mostrarAlertaSimple("Campos vacios", "Todos los campos deben estar llenos.", Alert.AlertType.INFORMATION);
+        }
+    }
+
+    @FXML
+    private void clicBttnOpcionBuscarUsuarioBiblioteca(ActionEvent event) {
+            buscarUsuarioBiblioteca();
     }
     
     private void buscarRecursoDocumental(){
         try {
-            RecursoDocumental recursoEncontrado = RecursoDocumentalDAO.buscarRecursoPorNombre(txtBusquedaRecurso.getText());
+            RecursoDocumental recursoEncontrado = RecursoDocumentalDAO.buscarRecursoPorFolio(txtBusquedaRecurso.getText());
             if(recursoEncontrado != null){
                 txtFolio.setText(recursoEncontrado.getFolio());
                 txtTipoRecurso.setText(recursoEncontrado.getTipoRecurso());
                 txtNombreRecurso.setText(recursoEncontrado.getNombre());
                 txtAutorRecurso.setText(recursoEncontrado.getAutor());                
             }else{
-                Utilidades.mostrarAlertaSimple("Error de busqueda", "No se proporciono ningun nombre, falta algun caracter o no existe un recurso documental con este nombre.", Alert.AlertType.INFORMATION);
+                Utilidades.mostrarAlertaSimple("Error de busqueda", "No se proporciono ningun nombre, falta algun caracter, no existe un recurso documental con este folio o ha sido prestado.", Alert.AlertType.INFORMATION);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(FXMLPrestamoInterbibliotecarioController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         
+    }
+    
+    private void buscarUsuarioBiblioteca(){
+        try{
+            UsuarioBiblioteca usuarioBiblioteca = UsuarioBibliotecaDAO.obtenerUsuarioPorId(txtIdUsuario.getText());
+            if(usuarioBiblioteca != null){
+                txtNombreUsuario.setText(usuarioBiblioteca.getNombre());
+                txtCarrera.setText(usuarioBiblioteca.getCarrera());               
+            }else{
+                Utilidades.mostrarAlertaSimple("Error de busqueda", "No se proporciono ninguna matricula/numero de personal, falta algun caracter o no existe un usuario con este nombre.", Alert.AlertType.INFORMATION);
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
     }
     
     private void limpiarCampos(){
         txtNombreUsuario.setText(null);
         txtIdUsuario.setText(null);
         txtDestino.setText(null);
-        dpFechaInicio.setValue(null);
-        dpFechaEntrega.setValue(null);
         txtBusquedaRecurso.setText(null);
         txtFolio.setText(null);
         txtTipoRecurso.setText(null);
         txtNombreRecurso.setText(null);
         txtAutorRecurso.setText(null);
+        txtCarrera.setText(null);
+    }
+    
+    private boolean validarCamposLlenos(){
+        boolean camposLlenos;
+        String idUsuarioBiblioteca = txtIdUsuario.getText();
+        String nombreUsuario = txtNombreUsuario.getText();
+        String carreraUsuario = txtCarrera.getText();
+        String destino = txtDestino.getText();
+        String folio = txtFolio.getText();
+        String tipoRecurso = txtTipoRecurso.getText();
+        String nombreRecurso = txtNombreRecurso.getText();
+        String autor = txtAutorRecurso.getText();
+        
+        if(idUsuarioBiblioteca.isEmpty()||nombreUsuario.isEmpty()||carreraUsuario.isEmpty()||destino.isEmpty()||folio.isEmpty()||tipoRecurso.isEmpty()||nombreRecurso.isEmpty()||autor.isEmpty()){
+            camposLlenos = false;
+        }else{
+            camposLlenos = true;
+        }
+        return camposLlenos;
     }
     
     private void registrarPrestamo(){
+        Prestamo prestamo = new Prestamo();
+        int idRecurso;
         
+        try{
+            prestamo.setFechaInicio(java.sql.Date.valueOf(txtFechaInicio.getText()));
+            prestamo.setFechaEntrega(java.sql.Date.valueOf(txtFechaEntrega.getText()));
+            prestamo.setDestino(txtDestino.getText());
+            prestamo.setOrigen(txtOrigen.getText());
+            prestamo.setTipoPrestamo("Interbibliotecario");
+
+            idRecurso = RecursoDocumentalDAO.obtenerIdRecursoDocumental(txtFolio.getText());
+            prestamo.setIdRecurso(idRecurso);
+            prestamo.setIdUsuarioBiblioteca(txtIdUsuario.getText());
+            
+            if(idRecurso>-1){
+                ResultadoOperacion resultadoOP = PrestamoDAO.registrarPrestamoInterbibliotecario(prestamo);
+                if(!resultadoOP.isError()){
+                    Utilidades.mostrarAlertaSimple("Prestamo exitoso", "El prestamo fue registrado exitosamente.", Alert.AlertType.INFORMATION);
+                }else{
+                    Utilidades.mostrarAlertaSimple("ERROR", resultadoOP.getMensaje(), Alert.AlertType.ERROR);
+                }
+            }else{
+                Utilidades.mostrarAlertaSimple("Recurso no encontrado", "Error al encontrar el recurso documental.", Alert.AlertType.ERROR);
+            }
+                
+            } catch (SQLException ex) {
+                Utilidades.mostrarAlertaSimple("Algo salió mal", "Hubo un error al comunicarse con la base de datos. "
+                        + "Por favor inténtelo más tarde.", Alert.AlertType.ERROR);
+            }
+    }
+    
+    private void InicializarFechas(){
+        LocalDate fechaInicio = LocalDate.now();
+        LocalDate fechaEntrega = fechaInicio.now().plusDays(14);
+        txtFechaInicio.setText(fechaInicio.toString());
+        txtFechaEntrega.setText(fechaEntrega.toString());
+    }
+    
+    private void actualizarEstadoRecursoDocumental(){
+        try{
+            ResultadoOperacion resultadoOP = RecursoDocumentalDAO.actualizarEstadoRecursoDocumental(txtFolio.getText());
+            if(!resultadoOP.isError()){
+                    Utilidades.mostrarAlertaSimple("Reecurso Actualizado", "Estado: Prestado.", Alert.AlertType.INFORMATION);
+            }else{
+                    Utilidades.mostrarAlertaSimple("ERROR", resultadoOP.getMensaje(), Alert.AlertType.ERROR);
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+    
+    private boolean validarNumeroPrestamos(){
+        boolean numeroPrestamosExcedidos = false;
+        try{
+            ArrayList<Prestamo> prestamosBD = PrestamoDAO.obtenerPrestamosPorIdUsuario(txtIdUsuario.getText());
+            if(prestamosBD.size() < 4){
+                numeroPrestamosExcedidos = false;
+            }else{
+                numeroPrestamosExcedidos = true;
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return numeroPrestamosExcedidos;
     }
 }

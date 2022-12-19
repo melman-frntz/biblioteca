@@ -3,7 +3,7 @@ package biblioteca.modelo.pojo;
 /*
     @author Jesús Enrique Fernández González
     Fecha creación: 10/12/2022
-    Fecha de última modificación: 16/12/2022
+    Fecha de última modificación: 11/12/2022
     Último modificador: Jesús Enrique Fernández González
 */
 

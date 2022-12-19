@@ -21,39 +21,51 @@
       </Pane>
       <Label layoutX="89.0" layoutY="150.0" text="Datos del usuario">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtIdUsuario" layoutX="260.0" layoutY="209.0" prefHeight="31.0" prefWidth="390.0" promptText="Matricula o No. Personal de usuario" />
-      <TextField fx:id="txtNombreUsuario" layoutX="787.0" layoutY="209.0" prefHeight="31.0" prefWidth="475.0" promptText="Nombre del usuario" />
-      <TextField fx:id="txtDestino" layoutX="175.0" layoutY="271.0" prefHeight="31.0" prefWidth="475.0" promptText="Destino" />
+      <TextField fx:id="txtIdUsuario" layoutX="260.0" layoutY="209.0" prefHeight="31.0" prefWidth="295.0" promptText="Matricula o No. Personal de usuario" />
+      <TextField fx:id="txtNombreUsuario" editable="false" layoutX="787.0" layoutY="209.0" prefHeight="31.0" prefWidth="475.0" promptText="Nombre del usuario">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></TextField>
+      <TextField fx:id="txtDestino" layoutX="260.0" layoutY="271.0" prefHeight="31.0" prefWidth="390.0" promptText="Destino" />
       <Label layoutX="89.0" layoutY="214.0" text="Matricula/No. Personal:" />
       <Label layoutX="705.0" layoutY="214.0" text="Nombre:" />
       <Label layoutX="89.0" layoutY="276.0" text="Destino:" />
-      <DatePicker fx:id="dpFechaInicio" layoutX="192.0" layoutY="328.0" prefHeight="31.0" prefWidth="221.0" promptText="DD/MM/AAAA" />
       <Label layoutX="89.0" layoutY="333.0" text="Fecha inicio:" />
-      <Label layoutX="705.0" layoutY="333.0" text="Fecha enttrega:" />
-      <DatePicker fx:id="dpFechaEntrega" layoutX="828.0" layoutY="328.0" promptText="DD/MM/AAAA" />
-      <Label layoutX="89.0" layoutY="392.0" text="Nombre del recurso documental:" />
-      <TextField fx:id="txtBusquedaRecurso" layoutX="332.0" layoutY="387.0" prefHeight="31.0" prefWidth="835.0" promptText="Introduzca " />
-      <Button layoutX="1167.0" layoutY="387.0" mnemonicParsing="false" onAction="#clicBttnOpcionBuscar" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: #00AB4F;" text="Buscar" textFill="WHITE">
+      <Label layoutX="89.0" layoutY="390.0" text="Fecha entrega:" />
+      <TextField fx:id="txtBusquedaRecurso" layoutX="449.0" layoutY="453.0" prefHeight="31.0" prefWidth="716.0" promptText="Introduzca el folio del recurso documental" />
+      <Button layoutX="1166.0" layoutY="453.0" mnemonicParsing="false" onAction="#clicBttnOpcionBuscar" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: #00AB4F;" text="Buscar" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="txtFolio" editable="false" layoutX="175.0" layoutY="511.0" prefHeight="31.0" prefWidth="239.0" promptText="Folio" />
+      <TextField fx:id="txtFolio" editable="false" layoutX="260.0" layoutY="511.0" prefHeight="31.0" prefWidth="188.0" promptText="Folio">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></TextField>
       <Label layoutX="89.0" layoutY="451.0" text="Datos del recurso documental">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
       <Label layoutX="89.0" layoutY="516.0" text="Folio:" />
       <Label layoutX="89.0" layoutY="579.0" text="Nombre:" />
       <Label layoutX="87.0" layoutY="646.0" text="Autor:" />
-      <Label layoutX="705.0" layoutY="516.0" text="Tipo de recurso:" />
-      <TextField fx:id="txtTipoRecurso" editable="false" layoutX="828.0" layoutY="511.0" prefHeight="31.0" prefWidth="239.0" promptText="Tipo de recurso" />
-      <TextField fx:id="txtNombreRecurso" editable="false" layoutX="175.0" layoutY="574.0" prefHeight="31.0" prefWidth="892.0" promptText="Nombre del recurso" />
-      <TextField fx:id="txtAutorRecurso" editable="false" layoutX="175.0" layoutY="641.0" prefHeight="31.0" prefWidth="892.0" promptText="Autor del recurso" />
+      <Label layoutX="472.0" layoutY="516.0" text="Tipo de recurso:" />
+      <TextField fx:id="txtTipoRecurso" editable="false" layoutX="604.0" layoutY="511.0" prefHeight="31.0" prefWidth="239.0" promptText="Tipo de recurso">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></TextField>
+      <TextField fx:id="txtNombreRecurso" editable="false" layoutX="260.0" layoutY="574.0" prefHeight="31.0" prefWidth="892.0" promptText="Nombre del recurso">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></TextField>
+      <TextField fx:id="txtAutorRecurso" editable="false" layoutX="259.0" layoutY="641.0" prefHeight="31.0" prefWidth="892.0" promptText="Autor del recurso">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></TextField>
       <Button layoutX="990.0" layoutY="721.0" mnemonicParsing="false" onAction="#clicBttnOpcionCancelar" style="-fx-background-color: #00AB4F;" text="Cancelar" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -64,5 +76,31 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label layoutX="866.0" layoutY="516.0" text="Origen:" />
+      <TextField fx:id="txtOrigen" editable="false" layoutX="935.0" layoutY="511.0" prefHeight="31.0" prefWidth="326.0" text="Facultad Economia, Estadistica e Informactica">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </TextField>
+      <TextField fx:id="txtCarrera" editable="false" layoutX="787.0" layoutY="271.0" prefHeight="31.0" prefWidth="475.0" promptText="Carrera">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </TextField>
+      <Label layoutX="705.0" layoutY="276.0" text="Carrera:" />
+      <Button layoutX="556.0" layoutY="209.0" mnemonicParsing="false" onAction="#clicBttnOpcionBuscarUsuarioBiblioteca" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: #00AB4F;" text="Buscar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <TextField fx:id="txtFechaInicio" editable="false" layoutX="259.0" layoutY="328.0" prefHeight="31.0" prefWidth="390.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </TextField>
+      <TextField fx:id="txtFechaEntrega" editable="false" layoutX="260.0" layoutY="385.0" prefHeight="31.0" prefWidth="390.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </TextField>
    </children>
 </AnchorPane>

@@ -52,6 +52,11 @@ public class FXMLControlDePrestamosController implements Initializable {
     private void clicBttnOpcionSolicitarRenovacion(ActionEvent event) {
         mostrarVentanaDevolucionRenovacion(false, true);
     }
+
+    @FXML
+    private void clicBttnOpcionPrestamoDomicilio(ActionEvent event) {
+        mostrarVentanaPrestamoDomicilio();
+    }
     
     private void cargarVentanaPrestamoInterbibliotecario(){
         try {
@@ -61,7 +66,7 @@ public class FXMLControlDePrestamosController implements Initializable {
             Stage nuevoEscenarioPrestamoInterbibliotecario = new Stage();
             nuevoEscenarioPrestamoInterbibliotecario.setScene(escenarioPrestamoInterbibliotecario);
             nuevoEscenarioPrestamoInterbibliotecario.initModality(Modality.APPLICATION_MODAL);
-            nuevoEscenarioPrestamoInterbibliotecario.showAndWait();
+            nuevoEscenarioPrestamoInterbibliotecario.show();
         } catch (IOException ex) {
             Logger.getLogger(FXMLControlDeRecursosController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -81,6 +86,20 @@ public class FXMLControlDePrestamosController implements Initializable {
         } catch (IOException ex) {
             Utilidades.mostrarAlertaSimple("Error", "Error al cargar el formulario de alumnos.", Alert.AlertType.ERROR);
             ex.printStackTrace();
+        }
+    }
+    
+    private void mostrarVentanaPrestamoDomicilio(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLRegistrarPrestamo.fxml"));
+            Parent ventanaRegistrarPrestamo = fxmlLoader.load();
+            Scene escenarioRegistrarPrestamo = new Scene(ventanaRegistrarPrestamo);
+            Stage nuevoEscenarioRegistrarPrestamo = new Stage();
+            nuevoEscenarioRegistrarPrestamo.setScene(escenarioRegistrarPrestamo);
+            nuevoEscenarioRegistrarPrestamo.initModality(Modality.APPLICATION_MODAL);
+            nuevoEscenarioRegistrarPrestamo.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLControlDeRecursosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

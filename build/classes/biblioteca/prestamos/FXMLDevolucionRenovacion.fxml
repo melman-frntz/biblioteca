@@ -15,7 +15,10 @@
          </font>
       </Label>
       <TextField fx:id="tfIdentificador" layoutX="255.0" layoutY="175.0" prefHeight="31.0" prefWidth="307.0" promptText="Identificador de usuario" />
-      <Button layoutX="615.0" layoutY="175.0" mnemonicParsing="false" onAction="#buscarUsuario" text="Buscar" />
+      <Button layoutX="615.0" layoutY="175.0" mnemonicParsing="false" onAction="#buscarUsuario" text="Buscar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Label layoutX="70.0" layoutY="283.0" text="Nombre:">
          <font>
             <Font size="17.0" />
@@ -61,8 +64,17 @@
             <TableColumn fx:id="tcRecursoDocumental" prefWidth="501.0" text="Préstamos activos" />
          </columns>
       </TableView>
-      <Button fx:id="btnDevolucion" layoutX="667.0" layoutY="576.0" mnemonicParsing="false" onAction="#registrarDevolucion" text="Registrar devolución" />
-      <Button fx:id="btnRenovacion" layoutX="881.0" layoutY="576.0" mnemonicParsing="false" onAction="#solicitarRenovacion" text="Solicitar renovación" />
-      <Button layoutX="541.0" layoutY="576.0" mnemonicParsing="false" onAction="#volver" text="Volver" />
+      <Button fx:id="btnDevolucion" layoutX="667.0" layoutY="576.0" mnemonicParsing="false" onAction="#registrarDevolucion" text="Registrar devolución">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="btnRenovacion" layoutX="881.0" layoutY="576.0" mnemonicParsing="false" onAction="#solicitarRenovacion" text="Solicitar renovación">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="541.0" layoutY="576.0" mnemonicParsing="false" onAction="#volver" text="Volver">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </AnchorPane>

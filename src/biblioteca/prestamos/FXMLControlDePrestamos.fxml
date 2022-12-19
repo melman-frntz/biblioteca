@@ -25,7 +25,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="bttnOpcionRegistrarPrestamoDomicilio" alignment="BASELINE_LEFT" layoutX="364.0" layoutY="179.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Registrar prestamo a domicilio" textFill="WHITE">
+      <Button fx:id="bttnOpcionRegistrarPrestamoDomicilio" alignment="BASELINE_LEFT" layoutX="364.0" layoutY="179.0" mnemonicParsing="false" onAction="#clicBttnOpcionPrestamoDomicilio" prefHeight="102.0" prefWidth="357.0" style="-fx-background-color: #00519E;" text="Registrar prestamo a domicilio" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
