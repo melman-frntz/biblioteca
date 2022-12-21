@@ -8,21 +8,26 @@ package biblioteca.modelo.pojo;
 */
 
 public class UsuarioBiblioteca {
+    private int id;
     private String idUsuarioBiblioteca;
+    private String contraseña;
     private String nombre;
     private String genero;
     private String correo;
     private String domicilio;
     private String telefono;
     private String periodo;
-    private String tipoUsuario;
+    private int tipoUsuario;
     private String carrera;
+    private byte[] fotoPerfil;
 
     public UsuarioBiblioteca() {
     }
-    
-    public UsuarioBiblioteca(String idUsuarioBiblioteca, String nombre, String genero, String correo, String domicilio, String telefono, String periodo, String tipoUsuario, String carrera) {
+
+    public UsuarioBiblioteca(int id, String idUsuarioBiblioteca, String contraseña, String nombre, String genero, String correo, String domicilio, String telefono, String periodo, int tipoUsuario, String carrera, byte[] fotoPerfil) {
+        this.id = id;
         this.idUsuarioBiblioteca = idUsuarioBiblioteca;
+        this.contraseña = contraseña;
         this.nombre = nombre;
         this.genero = genero;
         this.correo = correo;
@@ -31,6 +36,15 @@ public class UsuarioBiblioteca {
         this.periodo = periodo;
         this.tipoUsuario = tipoUsuario;
         this.carrera = carrera;
+        this.fotoPerfil = fotoPerfil;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIdUsuarioBiblioteca() {
@@ -39,6 +53,14 @@ public class UsuarioBiblioteca {
 
     public void setIdUsuarioBiblioteca(String idUsuarioBiblioteca) {
         this.idUsuarioBiblioteca = idUsuarioBiblioteca;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 
     public String getNombre() {
@@ -89,11 +111,11 @@ public class UsuarioBiblioteca {
         this.periodo = periodo;
     }
 
-    public String getTipoUsuario() {
+    public int getTipoUsuario() {
         return tipoUsuario;
     }
 
-    public void setTipoUsuario(String tipoUsuario) {
+    public void setTipoUsuario(int tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
 
@@ -104,5 +126,14 @@ public class UsuarioBiblioteca {
     public void setCarrera(String carrera) {
         this.carrera = carrera;
     }
+
+    public byte[] getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(byte[] fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
+    }
+    
     
 }

@@ -18,12 +18,12 @@ public class Prestamo {
     private String tipoPrestamo;
     private int vecesPrestado;
     private int idRecurso;
-    private String idUsuarioBiblioteca;
+    private int idUsuarioBiblioteca;
 
     public Prestamo() {
     }
-    
-    public Prestamo(int id, Date fechaInicio, Date fechaEntrega, String destino, String origen, String tipoPrestamo, int vecesPrestado, int idRecurso, String idUsuarioBiblioteca) {
+
+    public Prestamo(int id, Date fechaInicio, Date fechaEntrega, String destino, String origen, String tipoPrestamo, int vecesPrestado, int idRecurso, int idUsuarioBiblioteca) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaEntrega = fechaEntrega;
@@ -99,15 +99,13 @@ public class Prestamo {
         this.idRecurso = idRecurso;
     }
 
-    public String getIdUsuarioBiblioteca() {
+    public int getIdUsuarioBiblioteca() {
         return idUsuarioBiblioteca;
     }
 
-    public void setIdUsuarioBiblioteca(String idUsuarioBiblioteca) {
+    public void setIdUsuarioBiblioteca(int idUsuarioBiblioteca) {
         this.idUsuarioBiblioteca = idUsuarioBiblioteca;
     }
     
-    public String toString(){
-        return ""+fechaEntrega;
-    }
+    
 }

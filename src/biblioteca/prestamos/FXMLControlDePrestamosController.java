@@ -1,6 +1,5 @@
 package biblioteca.prestamos;
 
-import biblioteca.modelo.pojo.UsuarioStaff;
 import biblioteca.recursos.FXMLControlDeRecursosController;
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +28,7 @@ public class FXMLControlDePrestamosController implements Initializable {
     private Button bttnSolicitarRenovacion;
     @FXML
     private Button bttnOpcionPrestamoInterbibliotecario;
+    private int tipoUsuario;
 
     /**
      * Initializes the controller class.
@@ -100,6 +100,41 @@ public class FXMLControlDePrestamosController implements Initializable {
             nuevoEscenarioRegistrarPrestamo.show();
         } catch (IOException ex) {
             Logger.getLogger(FXMLControlDeRecursosController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void inicializarTipoUsuario(int tipoUsuario){
+        this.tipoUsuario = tipoUsuario;
+        
+        habilitarOpciones();
+    }
+    
+    private void habilitarOpciones(){
+        switch(tipoUsuario){
+            case 1:
+                bttnOpcionRegistrarDevolucion.setDisable(true);
+                bttnOpcionRegistrarPrestamoDomicilio.setDisable(true);
+                bttnSolicitarRenovacion.setDisable(true);
+                
+                break;
+            case 2:
+                bttnOpcionPrestamoInterbibliotecario.setDisable(true);
+                bttnSolicitarRenovacion.setDisable(true);
+                
+                break;
+            case 3:
+                bttnOpcionRegistrarDevolucion.setDisable(true);
+                bttnOpcionRegistrarPrestamoDomicilio.setDisable(true);
+                bttnOpcionPrestamoInterbibliotecario.setDisable(true);
+                bttnSolicitarRenovacion.setDisable(true);
+                
+                break;
+            case 4:
+                bttnOpcionRegistrarDevolucion.setDisable(true);
+                bttnOpcionRegistrarPrestamoDomicilio.setDisable(true);
+                bttnOpcionPrestamoInterbibliotecario.setDisable(true);
+                
+                break;
         }
     }
 }

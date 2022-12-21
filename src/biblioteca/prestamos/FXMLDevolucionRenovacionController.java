@@ -16,6 +16,8 @@ import biblioteca.modelo.pojo.ResultadoOperacion;
 import biblioteca.modelo.pojo.UsuarioBiblioteca;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -52,12 +54,13 @@ public class FXMLDevolucionRenovacionController implements Initializable {
     @FXML
     private TableColumn tcRecursoDocumental;
     @FXML
+    private TableColumn tcIDRecursoDocumental;
+    @FXML
     private Button btnDevolucion;
     @FXML
     private Button btnRenovacion;
     
     private ObservableList<RecursoDocumental> listaRecursos;
-    private ObservableList<Prestamo> fechaEntrega;
     private boolean esRenovacion;
     
     @Override
@@ -68,16 +71,22 @@ public class FXMLDevolucionRenovacionController implements Initializable {
     @FXML
     private void buscarUsuario(ActionEvent event) {
         try {
-            String nombreUsuario = tfIdentificador.getText();
+            String matricula = tfIdentificador.getText();
             
             //¿Se introdujo un nombre de usuario de biblioteca?
-            if(nombreUsuario.isEmpty()){
+            if(matricula.isEmpty()){
                 Utilidades.mostrarAlertaSimple("", "Debe escribir el nombre de un usuario de la biblioteca", 
                         Alert.AlertType.WARNING);
                 return;
             }
             
-            ArrayList<UsuarioBiblioteca> prestamosBD = UsuarioBibliotecaDAO.obtenerUsuario(nombreUsuario);
+            ArrayList<UsuarioBiblioteca> prestamosBD = UsuarioBibliotecaDAO.obtenerUsuario(matricula);
+            
+            if(prestamosBD.isEmpty()){
+                Utilidades.mostrarAlertaSimple("Usuario no encontrado", "El usuario ingresado no se encontró", 
+                        Alert.AlertType.WARNING);
+                return;
+            }
             
             for(UsuarioBiblioteca usuario : prestamosBD){
                 lbNombreUsuario.setText(usuario.getNombre());
@@ -145,12 +154,12 @@ public class FXMLDevolucionRenovacionController implements Initializable {
                 
                 //¿La operación marca error?
                 if(!renovacion.isError()){
-                    fechaEntrega = FXCollections.observableArrayList();
-                    ArrayList<Prestamo> nuevaFechaEntrega = PrestamoDAO.obtenerFechaEntrega(recursoFila.getIdRecurso());
-                    fechaEntrega.addAll(nuevaFechaEntrega);
+                    java.sql.Date nuevaFechaEntrega = PrestamoDAO.obtenerFechaEntrega(recursoFila.getIdRecurso());
+                    DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaNuevaEntrega = formatoFecha.format(nuevaFechaEntrega);
                     
                     Utilidades.mostrarAlertaSimple("Registro de renovación exitoso", 
-                            "Fecha de entrega actualizada.\nLa nueva fecha es: "+fechaEntrega.toString(), 
+                            "Fecha de entrega actualizada.\nLa nueva fecha es: "+fechaNuevaEntrega, 
                             Alert.AlertType.CONFIRMATION);
                 }else{
                     Utilidades.mostrarAlertaSimple("Error", "No se pudo registrar la renovación. Inténtelo más tarde", 
@@ -172,6 +181,7 @@ public class FXMLDevolucionRenovacionController implements Initializable {
     
     private void configurarTabla(){
         tcRecursoDocumental.setCellValueFactory(new PropertyValueFactory("nombre"));
+        tcIDRecursoDocumental.setCellValueFactory(new PropertyValueFactory("idBiblioteca"));
     }
     
     private void cargarTablaRenovacion(UsuarioBiblioteca usuario){

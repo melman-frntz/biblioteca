@@ -1,11 +1,14 @@
 package biblioteca;
 
+import biblioteca.papeleo.FXMLPapeleoController;
+import biblioteca.prestamos.FXMLControlDePrestamosController;
+import biblioteca.recursos.FXMLControlDeRecursosController;
+import biblioteca.usuarios.FXMLControlDeUsuariosController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +18,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class FXMLPrincipalController implements Initializable {
@@ -30,6 +32,7 @@ public class FXMLPrincipalController implements Initializable {
     private AnchorPane background;
     @FXML
     private BorderPane borderPaneLayOut;
+    private int tipoUsuario;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -68,10 +71,32 @@ public class FXMLPrincipalController implements Initializable {
     }
     
     private void cargarOpciones(String vista){
-        try {   
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(vista + ".fxml"));
+        try {                  
             borderPaneLayOut.getChildren().remove(borderPaneLayOut.getCenter()); //Remueve fxml existente del centro
-            borderPaneLayOut.setCenter(fxmlLoader.load());
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(vista + ".fxml"));  
+            Parent vistap = fxmlLoader.load();
+            
+            if(vista.startsWith("prestamos/")){
+                FXMLControlDePrestamosController prestamos = fxmlLoader.getController();
+                prestamos.inicializarTipoUsuario(tipoUsuario);
+            }
+            
+            if(vista.startsWith("recursos/")){
+                FXMLControlDeRecursosController recursos = fxmlLoader.getController();
+                recursos.inicializarTipoUsuario(tipoUsuario);
+            }
+            
+            if(vista.startsWith("usuarios/")){
+                FXMLControlDeUsuariosController usuarios = fxmlLoader.getController();
+                usuarios.inicializarTipoUsuario(tipoUsuario);
+            }
+            
+            if(vista.startsWith("papeleo/")){
+                FXMLPapeleoController papeleo = fxmlLoader.getController();
+                papeleo.inicializarTipoUsuario(tipoUsuario);
+            }
+            
+            borderPaneLayOut.setCenter(vistap);
         } catch (IOException ex) {
             Logger.getLogger(FXMLPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -92,5 +117,11 @@ public class FXMLPrincipalController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FXMLPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void inicializarTipoUsuario(int tipoUsuario){
+        this.tipoUsuario = tipoUsuario;
+        
+        cargarOpciones("FXMLInicio");
     }
 }

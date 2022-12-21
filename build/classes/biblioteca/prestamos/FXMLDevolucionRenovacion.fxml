@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,72 +9,74 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="664.0" prefWidth="1097.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.prestamos.FXMLDevolucionRenovacionController">
+<AnchorPane id="AnchorPane" prefHeight="792.0" prefWidth="1330.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.prestamos.FXMLDevolucionRenovacionController">
    <children>
-      <Label fx:id="lbTitulo" layoutX="54.0" layoutY="74.0" text="Registrar devolución">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00519e" height="82.0" stroke="BLACK" strokeType="INSIDE" width="1334.0" />
+      <Label fx:id="lbTitulo" layoutX="493.0" layoutY="15.0" text="Registrar devolución" textFill="WHITE">
          <font>
-            <Font size="23.0" />
+            <Font name="System Bold Italic" size="36.0" />
          </font>
       </Label>
-      <TextField fx:id="tfIdentificador" layoutX="255.0" layoutY="175.0" prefHeight="31.0" prefWidth="307.0" promptText="Identificador de usuario" />
-      <Button layoutX="615.0" layoutY="175.0" mnemonicParsing="false" onAction="#buscarUsuario" text="Buscar">
+      <TextField fx:id="tfIdentificador" layoutX="360.0" layoutY="167.0" prefHeight="31.0" prefWidth="400.0" promptText="Matrícula" />
+      <Button layoutX="791.0" layoutY="167.0" mnemonicParsing="false" onAction="#buscarUsuario" style="-fx-background-color: #1D8348;" text="Buscar" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label layoutX="70.0" layoutY="283.0" text="Nombre:">
+      <Label layoutX="73.0" layoutY="312.0" text="Nombre:">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="67.0" layoutY="342.0" text="Correo:">
+      <Label layoutX="70.0" layoutY="371.0" text="Correo:">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="67.0" layoutY="397.0" text="Dirección:">
+      <Label layoutX="70.0" layoutY="426.0" text="Dirección:">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="68.0" layoutY="455.0" text="Teléfono:">
+      <Label layoutX="71.0" layoutY="484.0" text="Teléfono:">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label fx:id="lbNombreUsuario" layoutX="204.0" layoutY="283.0" prefHeight="26.0" prefWidth="325.0">
+      <Label fx:id="lbNombreUsuario" layoutX="207.0" layoutY="312.0" prefHeight="26.0" prefWidth="429.0">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label fx:id="lbCorreoUsuario" layoutX="204.0" layoutY="342.0" prefHeight="26.0" prefWidth="325.0">
+      <Label fx:id="lbCorreoUsuario" layoutX="207.0" layoutY="371.0" prefHeight="26.0" prefWidth="429.0">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label fx:id="lbDireccionUsuario" layoutX="204.0" layoutY="397.0" prefHeight="26.0" prefWidth="325.0">
+      <Label fx:id="lbDireccionUsuario" layoutX="207.0" layoutY="426.0" prefHeight="26.0" prefWidth="429.0">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label fx:id="lbTelefonoUsuario" layoutX="204.0" layoutY="455.0" prefHeight="26.0" prefWidth="325.0">
+      <Label fx:id="lbTelefonoUsuario" layoutX="207.0" layoutY="484.0" prefHeight="26.0" prefWidth="429.0">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <TableView fx:id="tvRecursos" layoutX="572.0" layoutY="284.0" prefHeight="200.0" prefWidth="502.0">
+      <TableView fx:id="tvRecursos" layoutX="680.0" layoutY="297.0" prefHeight="228.0" prefWidth="624.0">
          <columns>
-            <TableColumn fx:id="tcRecursoDocumental" prefWidth="501.0" text="Préstamos activos" />
+            <TableColumn fx:id="tcIDRecursoDocumental" prefWidth="121.0" text="ID Biblioteca" />
+            <TableColumn fx:id="tcRecursoDocumental" prefWidth="502.0" text="Nombre del recurso documental en préstamo" />
          </columns>
       </TableView>
-      <Button fx:id="btnDevolucion" layoutX="667.0" layoutY="576.0" mnemonicParsing="false" onAction="#registrarDevolucion" text="Registrar devolución">
+      <Button fx:id="btnDevolucion" layoutX="791.0" layoutY="678.0" mnemonicParsing="false" onAction="#registrarDevolucion" style="-fx-background-color: #1D8348;" text="Registrar devolución" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="btnRenovacion" layoutX="881.0" layoutY="576.0" mnemonicParsing="false" onAction="#solicitarRenovacion" text="Solicitar renovación">
+      <Button fx:id="btnRenovacion" layoutX="1072.0" layoutY="678.0" mnemonicParsing="false" onAction="#solicitarRenovacion" style="-fx-background-color: #1D8348;" text="Solicitar renovación" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="541.0" layoutY="576.0" mnemonicParsing="false" onAction="#volver" text="Volver">
+      <Button layoutX="605.0" layoutY="678.0" mnemonicParsing="false" onAction="#volver" style="-fx-background-color: #1D8348;" text="Volver" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

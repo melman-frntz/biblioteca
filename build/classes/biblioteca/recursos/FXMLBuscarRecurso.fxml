@@ -27,9 +27,10 @@
       </Button>
       <TableView fx:id="tvRecursos" layoutX="340.0" layoutY="211.0" prefHeight="500.0" prefWidth="680.0">
         <columns>
-          <TableColumn fx:id="tcNombre" prefWidth="255.0" text="Nombre" />
-          <TableColumn fx:id="tcAutor" prefWidth="255.0" text="Autor" />
-            <TableColumn fx:id="tcIdBiblioteca" prefWidth="169.0" text="Id Biblioteca" />
+          <TableColumn fx:id="tcNombre" prefWidth="193.0" text="Nombre" />
+          <TableColumn fx:id="tcAutor" prefWidth="193.0" text="Autor" />
+            <TableColumn fx:id="tcIdBiblioteca" prefWidth="123.0" text="Id Biblioteca" />
+            <TableColumn fx:id="tcEstado" prefWidth="170.0" text="Estado" />
         </columns>
       </TableView>
       <Button layoutX="640.0" layoutY="747.0" mnemonicParsing="false" onAction="#clicBttnMostrar" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #00519E;" text="Mostrar" textFill="WHITE">

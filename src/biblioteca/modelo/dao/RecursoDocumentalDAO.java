@@ -24,9 +24,9 @@ public class RecursoDocumentalDAO {
         
         if(conexionBD != null){
             try{
-                String consulta = "SELECT * FROM recursodocumental WHERE nombre = ?";
+                String consulta = "SELECT * FROM recursodocumental WHERE nombre LIKE ?";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
-                prepararSentencia.setString(1, nombre);
+                prepararSentencia.setString(1, "%"+nombre+"%");
                 ResultSet resultadoConsulta = prepararSentencia.executeQuery();
                 recursosBD = new ArrayList<>();
                 
@@ -179,9 +179,9 @@ public class RecursoDocumentalDAO {
         
         if(conexionBD != null){
             try{
-                String consulta = "SELECT recursoDocumental.nombre, recursoDocumental.id FROM recursoDocumental "
-                        + "INNER JOIN Prestamo ON recursoDocumental.id = Prestamo.idRecurso INNER JOIN UsuarioBiblioteca ON "
-                        + "Prestamo.idUsuarioBiblioteca = UsuarioBiblioteca.idUsuarioBiblioteca WHERE "
+                String consulta = "SELECT recursoDocumental.nombre, recursoDocumental.id, recursodocumental.idBiblioteca "
+                        + "FROM recursoDocumental INNER JOIN Prestamo ON recursoDocumental.id = Prestamo.idRecurso INNER "
+                        + "JOIN UsuarioBiblioteca ON Prestamo.idUsuarioBiblioteca = UsuarioBiblioteca.id WHERE "
                         + "UsuarioBiblioteca.nombre = ? AND Prestamo.fechaEntrega > ?";
                 
                 Date fechaUtil = new Date();
@@ -197,6 +197,7 @@ public class RecursoDocumentalDAO {
                     RecursoDocumental temp = new RecursoDocumental();
                     temp.setIdRecurso(resultadoConsulta.getInt("id"));
                     temp.setNombre(resultadoConsulta.getString("nombre"));
+                    temp.setIdBiblioteca(resultadoConsulta.getInt("idBiblioteca"));
                     recursosBD.add(temp);
                 }
             }catch(SQLException e){
@@ -217,9 +218,9 @@ public class RecursoDocumentalDAO {
         
         if(conexionBD != null){
             try{
-                String consulta = "SELECT recursoDocumental.nombre, recursoDocumental.id FROM recursoDocumental "
-                        + "INNER JOIN Prestamo ON recursoDocumental.id = Prestamo.idRecurso INNER JOIN UsuarioBiblioteca ON "
-                        + "Prestamo.idUsuarioBiblioteca = UsuarioBiblioteca.idUsuarioBiblioteca WHERE "
+                String consulta = "SELECT recursoDocumental.nombre, recursoDocumental.id, recursodocumental.idBiblioteca "
+                        + "FROM recursoDocumental INNER JOIN Prestamo ON recursoDocumental.id = Prestamo.idRecurso INNER "
+                        + "JOIN UsuarioBiblioteca ON Prestamo.idUsuarioBiblioteca = UsuarioBiblioteca.id WHERE "
                         + "UsuarioBiblioteca.nombre = ?";
                 
                 PreparedStatement consultaPrestamosUsuario = conexionBD.prepareStatement(consulta);
@@ -231,6 +232,7 @@ public class RecursoDocumentalDAO {
                     RecursoDocumental temp = new RecursoDocumental();
                     temp.setIdRecurso(resultadoConsulta.getInt("id"));
                     temp.setNombre(resultadoConsulta.getString("nombre"));
+                    temp.setIdBiblioteca(resultadoConsulta.getInt("idBiblioteca"));
                     recursosBD.add(temp);
                 }
             }catch(SQLException e){
@@ -245,26 +247,25 @@ public class RecursoDocumentalDAO {
         return recursosBD;
     }
     
-    public static ArrayList<RecursoDocumental> buscarRecursoDocumentalPorId(String idRecursoDocumental) throws SQLException{
-        ArrayList<RecursoDocumental> recursosBD = null;
+    public static RecursoDocumental buscarRecursoDocumentalPorId(int idRecursoDocumental) throws SQLException{
+        RecursoDocumental recursoDoc = null;
         Connection conexionBD = ConexionBaseDatos.abrirConexionBaseDatos();
         
         if(conexionBD != null){
             try{
-                String consulta = "SELECT id, nombre, autor, tipoRecurso, seccion FROM recursodocumental WHERE idBiblioteca = ?";
+                String consulta = "SELECT id, idBiblioteca, nombre, autor, tipoRecurso, seccion, estado FROM recursodocumental WHERE idBiblioteca = ?";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
-                prepararSentencia.setString(1, idRecursoDocumental);
+                prepararSentencia.setInt(1, idRecursoDocumental);
                 ResultSet resultadoConsulta = prepararSentencia.executeQuery();
-                recursosBD = new ArrayList<>();
-                
-                while(resultadoConsulta.next()){
-                    RecursoDocumental recursoTemporal = new RecursoDocumental();
-                    recursoTemporal.setIdRecurso(resultadoConsulta.getInt("id"));
-                    recursoTemporal.setNombre(resultadoConsulta.getString("nombre"));
-                    recursoTemporal.setAutor(resultadoConsulta.getString("autor"));
-                    recursoTemporal.setSeccion(resultadoConsulta.getString("seccion"));
-                    recursoTemporal.setTipoRecurso(resultadoConsulta.getString("tipoRecurso"));
-                    recursosBD.add(recursoTemporal);
+                recursoDoc = new RecursoDocumental();
+                if(resultadoConsulta.next()){
+                    recursoDoc.setIdRecurso(resultadoConsulta.getInt("id"));
+                    recursoDoc.setIdBiblioteca(resultadoConsulta.getInt("idBiblioteca"));
+                    recursoDoc.setNombre(resultadoConsulta.getString("nombre"));
+                    recursoDoc.setAutor(resultadoConsulta.getString("autor"));
+                    recursoDoc.setSeccion(resultadoConsulta.getString("seccion"));
+                    recursoDoc.setTipoRecurso(resultadoConsulta.getString("tipoRecurso"));
+                    recursoDoc.setEstado(resultadoConsulta.getString("estado"));
                 }
                 
             }catch(SQLException sqlExcepcion){
@@ -274,7 +275,7 @@ public class RecursoDocumentalDAO {
             }
         }
         
-        return recursosBD;
+        return recursoDoc;
     }
     
     public static int obtenerIdRecursoDocumental(String folio) throws SQLException{

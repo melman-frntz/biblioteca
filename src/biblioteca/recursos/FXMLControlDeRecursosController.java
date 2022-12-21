@@ -1,6 +1,5 @@
 package biblioteca.recursos;
 
-import biblioteca.modelo.pojo.UsuarioStaff;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +21,7 @@ public class FXMLControlDeRecursosController implements Initializable {
     private Button bttnOpcionRegistrarRecurso;
     @FXML
     private Button bttnOpcionBuscarRecurso;
+    private int tipoUsuario;
 
     /**
      * Initializes the controller class.
@@ -68,5 +68,35 @@ public class FXMLControlDeRecursosController implements Initializable {
             Logger.getLogger(FXMLControlDeRecursosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void inicializarTipoUsuario(int tipoUsuario){
+        this.tipoUsuario = tipoUsuario;
+        
+        habilitarOpciones();
+    }
 
+        private void habilitarOpciones(){
+        switch(tipoUsuario){
+            case 1:
+                bttnOpcionBuscarRecurso.setDisable(false);
+                bttnOpcionRegistrarRecurso.setDisable(false);
+                
+                break;
+            case 2:
+                bttnOpcionBuscarRecurso.setDisable(false);
+                bttnOpcionRegistrarRecurso.setDisable(true);
+                
+                break;
+            case 3:
+                bttnOpcionBuscarRecurso.setDisable(false);
+                bttnOpcionRegistrarRecurso.setDisable(true);
+                
+                break;
+            case 4:
+                bttnOpcionBuscarRecurso.setDisable(false);
+                bttnOpcionRegistrarRecurso.setDisable(true);
+                
+                break;
+        }
+    }
 }

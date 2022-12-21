@@ -1,7 +1,7 @@
 package biblioteca;
 
-import biblioteca.modelo.dao.UsuarioStaffDAO;
-import biblioteca.modelo.pojo.UsuarioStaff;
+import biblioteca.modelo.dao.UsuarioBibliotecaDAO;
+import biblioteca.modelo.pojo.UsuarioBiblioteca;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -64,46 +64,32 @@ public class FXMLInicioSesionController implements Initializable {
     
     private void verificarCredencialesUsuario(String noPersonal, String contraseña) {
         try {
-            UsuarioStaff usuarioSesion = UsuarioStaffDAO.verificarUsuario(noPersonal, contraseña);
-            if(usuarioSesion.getNumeroDePersonal() != null){
-                irPantallaPrincipal();
+            UsuarioBiblioteca usuarioSesion = UsuarioBibliotecaDAO.verificarUsuario(noPersonal, contraseña);
+            System.out.println(usuarioSesion.getNombre());
+            if(usuarioSesion.getIdUsuarioBiblioteca() != null){
+                Utilidades.mostrarAlertaSimple("Bienvenid@", "Bienvenid@ " + usuarioSesion.getNombre() + ".", Alert.AlertType.INFORMATION);
+                irPantallaPrincipal(usuarioSesion.getTipoUsuario());
             }else{
                 Utilidades.mostrarAlertaSimple("Credenciales incorrectas", "El número de personal y/o contraseña es incorrecto, favor de "
                         + "verificar", Alert.AlertType.WARNING);
             }
         } catch (SQLException | NullPointerException e) {
             Utilidades.mostrarAlertaSimple("Error de conexión", "Hubo un error en el proceso de "
-                    + "comunicación. Intentelo más tarde.", Alert.AlertType.ERROR);
+                   + "comunicación. Intentelo más tarde.", Alert.AlertType.ERROR);
+                    
         }
     }
     
-    private void irPantallaPrincipal(){
+    private void irPantallaPrincipal(int tipoUsuario){
         try {
-            Parent vista = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
+            FXMLLoader accesoControlador = new FXMLLoader(getClass().getResource("FXMLPrincipal.fxml"));
+            Parent vista = accesoControlador.load();
+            FXMLPrincipalController ventana = accesoControlador.getController();
+            ventana.inicializarTipoUsuario(tipoUsuario);
             Scene escenaPrincipal = new Scene(vista);
             Stage escenarioBase = (Stage) tfNoPersonal.getScene().getWindow();
             escenarioBase.setScene(escenaPrincipal);
             escenarioBase.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void clicBttnRegistro(ActionEvent event) {
-        irPantallaRegistro();
-    }
-    
-    private void irPantallaRegistro(){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLRegistro.fxml"));
-            Parent ventanaRegistro = fxmlLoader.load();
-            Scene escenarioRegistro = new Scene(ventanaRegistro);
-            Stage nuevoEscenarioRegistro = new Stage();
-            nuevoEscenarioRegistro.setScene(escenarioRegistro);
-            nuevoEscenarioRegistro.initModality(Modality.APPLICATION_MODAL);
-            nuevoEscenarioRegistro.setResizable(false); 
-            nuevoEscenarioRegistro.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

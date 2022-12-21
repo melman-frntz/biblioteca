@@ -42,13 +42,12 @@ public class FXMLBuscarRecursoController implements Initializable {
     @FXML
     private TableColumn tcIdBiblioteca;
     @FXML
+    private TableColumn tcEstado;
+    @FXML
     private Label lbErrorBuscarRecurso;
     
     private ObservableList<RecursoDocumental> listaRecursos;
-
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         configurarTabla();
@@ -80,6 +79,7 @@ public class FXMLBuscarRecursoController implements Initializable {
         tcNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
         tcAutor.setCellValueFactory(new PropertyValueFactory("autor"));
         tcIdBiblioteca.setCellValueFactory(new PropertyValueFactory("idBiblioteca"));
+        tcEstado.setCellValueFactory(new PropertyValueFactory("estado"));
     }
     
     private void buscarRecursos(String nombre){
@@ -87,15 +87,10 @@ public class FXMLBuscarRecursoController implements Initializable {
             listaRecursos = FXCollections.observableArrayList();
             ArrayList<RecursoDocumental> recursosBD = RecursoDocumentalDAO.buscarRecursosPorNombre(nombre);
             
-            if(recursosBD != null){
-                ArrayList<RecursoDocumental> recursosDisponibles = filtrarRecursosDisponibles(recursosBD);
+            if(!recursosBD.isEmpty()){
+                listaRecursos.addAll(recursosBD);
+                tvRecursos.setItems(listaRecursos);
                 
-                if(recursosDisponibles != null){
-                    listaRecursos.addAll(recursosDisponibles);
-                    tvRecursos.setItems(listaRecursos);
-                }else{
-                    Utilidades.mostrarAlertaSimple("Recurso No Disponible", "Este recurso documental no tiene existencias disponibles.", Alert.AlertType.ERROR);
-                }
             }else{
                 Utilidades.mostrarAlertaSimple("Recurso No Encontrado", "Este recurso documental no esta registrado en el sistema.", Alert.AlertType.ERROR);
             }
@@ -103,22 +98,6 @@ public class FXMLBuscarRecursoController implements Initializable {
             sqlExcepcion.printStackTrace();
         }
     }
-    
-    private ArrayList<RecursoDocumental> filtrarRecursosDisponibles(ArrayList<RecursoDocumental> recursosBD){
-        ArrayList<RecursoDocumental> recursosFiltrados = null;
-        
-        if(recursosBD != null){
-            recursosFiltrados = new ArrayList<>();
-            
-            for(int i = 0; i < recursosBD.size(); i++){
-                if(recursosBD.get(i).getEstado().toLowerCase().equals("disponible")){
-                    recursosFiltrados.add(recursosBD.get(i));
-                }
-            }
-        }
-    
-        return recursosFiltrados;
-    }   
     
     private void abrirVentanaDetallesRecurso(RecursoDocumental recurso){
         try {

@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 
 public class FXMLControlDeUsuariosController implements Initializable {
 
+    private int tipoUsuario;
     /**
      * Initializes the controller class.
      */
@@ -14,4 +15,7 @@ public class FXMLControlDeUsuariosController implements Initializable {
         // TODO
     }    
     
+    public void inicializarTipoUsuario(int tipoUsuario){
+        this.tipoUsuario = tipoUsuario;
+    }
 }

@@ -24,10 +24,15 @@ public class PrestamoDAO {
         if(conexionBD != null){
             try{
                 String consulta = "DELETE FROM Prestamo WHERE Prestamo.idRecurso = ?";
+                String consulta2 = "UPDATE RecursoDocumental SET Estado = 'Disponible' WHERE id = ?";
                 
                 PreparedStatement consultaPrestamo = conexionBD.prepareStatement(consulta);
                 consultaPrestamo.setInt(1, idRecurso);
                 int numeroFilas = consultaPrestamo.executeUpdate();
+                
+                PreparedStatement consultaPrestamo2 = conexionBD.prepareStatement(consulta2);
+                consultaPrestamo2.setInt(1, idRecurso);
+                int numeroFilas2 = consultaPrestamo2.executeUpdate();
                 
                 //¿La consulta fue exitosa?
                 if(numeroFilas > 0){
@@ -35,6 +40,13 @@ public class PrestamoDAO {
                     prestamosBD.setMensaje("Préstamo eliminado");
                 }else{
                     prestamosBD.setMensaje("No se pudo eliminar el préstamo");
+                }
+                
+                if(numeroFilas2 > 0){
+                    prestamosBD.setError(false);
+                    prestamosBD.setMensaje("Recurso documental disponible");
+                }else{
+                    prestamosBD.setMensaje("No se pudo cambiar el estado del recurso");
                 }
             }catch(SQLException e){
                 e.printStackTrace();
@@ -79,8 +91,8 @@ public class PrestamoDAO {
         return prestamosBD;
     }
     
-    public static ArrayList<Prestamo> obtenerFechaEntrega(int idRecurso) throws SQLException{
-        ArrayList<Prestamo> prestamosBD = null;
+    public static java.sql.Date obtenerFechaEntrega(int idRecurso) throws SQLException{
+        java.sql.Date fechaNuevaEntrega = null;
         Connection conexionBD = ConexionBaseDatos.abrirConexionBaseDatos();
         
         if(conexionBD != null){
@@ -91,14 +103,11 @@ public class PrestamoDAO {
                 PreparedStatement consultaPrestamo = conexionBD.prepareStatement(consulta);
                 consultaPrestamo.setInt(1, idRecurso);
                 ResultSet resultadoConsulta = consultaPrestamo.executeQuery();
-                prestamosBD = new ArrayList<>();
                 
                 while(resultadoConsulta.next()){
-                    Prestamo temp = new Prestamo();
-                    temp.setFechaEntrega(resultadoConsulta.getDate("fechaEntrega"));
-                    prestamosBD.add(temp);
+                    fechaNuevaEntrega = resultadoConsulta.getDate("fechaEntrega");
                 }
-            }catch(SQLException e){
+            }catch(SQLException | NullPointerException e){
                 e.printStackTrace();
             }finally{
                 conexionBD.close();
@@ -107,7 +116,7 @@ public class PrestamoDAO {
             Utilidades.mostrarAlertaSimple("Error", "Falló la conexión con la base de datos.\nInténtelo más tarde", 
                     Alert.AlertType.ERROR);
         }
-        return prestamosBD;
+        return fechaNuevaEntrega;
     }
     
     public static ResultadoOperacion registrarPrestamoADomicilio(UsuarioBiblioteca usuario, int idRecurso) throws SQLException{
@@ -120,6 +129,8 @@ public class PrestamoDAO {
 
                 String consulta = "INSERT INTO prestamo (fechaInicio, fechaEntrega, destino, origen, tipoPrestamo, "
                         + "idRecurso, idUsuarioBiblioteca) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                String consulta2 = "UPDATE RecursoDocumental SET Estado = 'Prestado' WHERE id = ?";
+                
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
                 LocalDate fechaInicioLD = LocalDate.now();
                 String fechaInicioString = fechaInicioLD.toString();
@@ -130,17 +141,26 @@ public class PrestamoDAO {
                 prepararSentencia.setString(3, usuario.getDomicilio());
                 prepararSentencia.setString(4, "Facultad de Economía, Estadística e Informática");
                 prepararSentencia.setString(5, "A domicilio");
-                System.out.println("INSERTANDO ID RECURSO");
                 prepararSentencia.setInt(6, idRecurso);
-                System.out.println("ID RECURSO INSERTADO");
-                prepararSentencia.setString(7, usuario.getIdUsuarioBiblioteca());
-                System.out.println(idRecurso);
+                prepararSentencia.setInt(7, usuario.getId());
+                System.out.println(usuario.getId());
+                System.out.println(usuario.getIdUsuarioBiblioteca());
                 int filasAfectadas = prepararSentencia.executeUpdate();
-                System.out.println("UPDATE HECHO");
-                System.out.println(filasAfectadas);
+                
+                PreparedStatement consultaPrestamo2 = conexionBD.prepareStatement(consulta2);
+                consultaPrestamo2.setInt(1, idRecurso);
+                int numeroFilas2 = consultaPrestamo2.executeUpdate();
+                
                 if(filasAfectadas > 0){
                     respuesta.setError(false);
                     respuesta.setFilasAfectadas(filasAfectadas);
+                }
+                
+                if(numeroFilas2 > 0){
+                    respuesta.setError(false);
+                    respuesta.setMensaje("Recurso documental disponible");
+                }else{
+                    respuesta.setMensaje("No se pudo cambiar el estado del recurso");
                 }
             } catch (SQLException e) {
                 respuesta.setMensaje(e.getMessage());
@@ -151,27 +171,32 @@ public class PrestamoDAO {
           return respuesta;  
     }
     
-    public static ArrayList<Prestamo> obtenerPrestamosPorIdUsuario(String idUsuario) throws SQLException{
+    public static ArrayList<Prestamo> obtenerPrestamosPorIdUsuario(int idUsuario) throws SQLException{
         Connection conexionBD = ConexionBaseDatos.abrirConexionBaseDatos();
         ArrayList<Prestamo> prestamosBD = null;
-        try {
-            String consulta = "SELECT * FROM prestamo WHERE idUsuarioBiblioteca = ?";
-            PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
-            prepararSentencia.setString(1, idUsuario);
-            ResultSet resultadoConsulta = prepararSentencia.executeQuery();
-            prestamosBD = new ArrayList<>();
+        if(conexionBD != null){
+            try {
+                String consulta = "SELECT * FROM prestamo WHERE idUsuarioBiblioteca = ?";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
+                prepararSentencia.setInt(1, idUsuario);
+                ResultSet resultadoConsulta = prepararSentencia.executeQuery();
+                prestamosBD = new ArrayList<>();
+
+                while(resultadoConsulta.next()){
+                    Prestamo prestamoTemporal = new Prestamo();
+                    prestamoTemporal.setId(resultadoConsulta.getInt("id"));
+                    prestamosBD.add(prestamoTemporal);
+                }
             
-            while(resultadoConsulta.next()){
-                Prestamo prestamoTemporal = new Prestamo();
-                prestamoTemporal.setId(resultadoConsulta.getInt("id"));
-                prestamosBD.add(prestamoTemporal);
-            }
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            conexionBD.close();
-        }        
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }       
+        }else{
+            Utilidades.mostrarAlertaSimple("Error de conexión", "No hay conexión con la base de datos.", Alert.AlertType.ERROR);
+        }
+         
         return prestamosBD;
     }
     
@@ -191,7 +216,7 @@ public class PrestamoDAO {
                 prepararSentencia.setString(4, prestamo.getOrigen());
                 prepararSentencia.setString(5, prestamo.getTipoPrestamo());
                 prepararSentencia.setInt(6, prestamo.getIdRecurso());
-                prepararSentencia.setString(7, prestamo.getIdUsuarioBiblioteca());
+                prepararSentencia.setInt(7, prestamo.getIdUsuarioBiblioteca());
                 
                 int filasAfectadas = prepararSentencia.executeUpdate();
                 

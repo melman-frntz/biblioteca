@@ -41,7 +41,7 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="tfIdRecursoDocumental" layoutX="468.0" layoutY="416.0" prefHeight="42.0" prefWidth="424.0" promptText="Id asignado en la biblioteca">
+      <TextField fx:id="tfIdRecursoDocumental" layoutX="468.0" layoutY="416.0" onKeyReleased="#restringirDatos" prefHeight="42.0" prefWidth="424.0" promptText="Id asignado en la biblioteca">
          <font>
             <Font size="19.0" />
          </font>

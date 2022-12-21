@@ -68,7 +68,7 @@ public class FXMLRegistrarRecursoDaniadoController implements Initializable {
             listaRecursos = FXCollections.observableArrayList();
             ArrayList<RecursoDocumental> recursosBD = RecursoDocumentalDAO.recuperarRecursos();
             
-            if(recursosBD != null){
+            if(!recursosBD.isEmpty()){
                 ArrayList<RecursoDocumental> recursosDisponibles = filtrarRecursosDisponibles(recursosBD);
                 
                 if(recursosDisponibles != null){
@@ -102,7 +102,6 @@ public class FXMLRegistrarRecursoDaniadoController implements Initializable {
     }
     
     private void registrarRecursoDaniado(){
-        //TODO actualizar tabla
         RecursoDocumental recursoRegistrar = verificarRecursoSeleccionado();
         
         if(recursoRegistrar != null){
@@ -140,7 +139,11 @@ public class FXMLRegistrarRecursoDaniadoController implements Initializable {
                             return true;
                         }
                         
-                        if(String.valueOf(busqueda.getIdBiblioteca()).contains(newValue)){
+                        String filtroMinusculas = newValue.toLowerCase();
+                        
+                        if(String.valueOf(busqueda.getIdBiblioteca()).contains(filtroMinusculas)){
+                            return true;
+                        }else if(busqueda.getNombre().toLowerCase().contains(newValue)){
                             return true;
                         }
                         
