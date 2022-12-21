@@ -1,9 +1,12 @@
 package biblioteca.modelo.pojo;
 
-/**
- *
- * @author franz
- */
+/*
+*@author franz
+*Fecha creacion: 20/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: franz
+*/
+
 public class Facultad {
     private int idFacultad;
     private String clave;

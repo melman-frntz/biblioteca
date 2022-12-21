@@ -1,5 +1,12 @@
 package biblioteca.recursos;
 
+/*
+*@author froylan
+*Fecha creacion: 11/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: froylan
+*/
+
 import biblioteca.modelo.dao.RecursoDocumentalDAO;
 import biblioteca.modelo.pojo.RecursoDocumental;
 import biblioteca.modelo.pojo.ResultadoOperacion;
@@ -23,10 +30,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import utilidades.Utilidades;
 
-/**
- * @autor Froylan De Jesus Alvarez Rodriguez
- * @fecha 11/12/2022
- */
 public class FXMLRegistrarRecursoDaniadoController implements Initializable {
 
     @FXML

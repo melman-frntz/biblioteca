@@ -1,5 +1,13 @@
 package biblioteca;
 
+/*
+*@author manuel
+*Fecha creacion: 09/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: franz
+*/
+
+
 import biblioteca.modelo.dao.UsuarioBibliotecaDAO;
 import biblioteca.modelo.pojo.UsuarioBiblioteca;
 import java.io.IOException;
@@ -65,7 +73,6 @@ public class FXMLInicioSesionController implements Initializable {
     private void verificarCredencialesUsuario(String noPersonal, String contraseña) {
         try {
             UsuarioBiblioteca usuarioSesion = UsuarioBibliotecaDAO.verificarUsuario(noPersonal, contraseña);
-            System.out.println(usuarioSesion.getNombre());
             if(usuarioSesion.getIdUsuarioBiblioteca() != null){
                 Utilidades.mostrarAlertaSimple("Bienvenid@", "Bienvenid@ " + usuarioSesion.getNombre() + ".", Alert.AlertType.INFORMATION);
                 irPantallaPrincipal(usuarioSesion.getTipoUsuario());

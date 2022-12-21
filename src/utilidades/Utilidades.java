@@ -1,13 +1,17 @@
 package utilidades;
 
+/*
+*@author froylan
+*Fecha creacion: 09/12/2022
+*Fecha de ultima modificacion: 16/12/2022
+*Ultimo modificador: froylan
+*/
+
+
 import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
-/**
- * @autor Froylan De Jesus Alvarez Rodriguez
- * @fecha 11/12/2022
- */
 public class Utilidades {
     public static void mostrarAlertaSimple(String titulo, String mensaje, Alert.AlertType tipo){
         Alert alertaSimple = new Alert(tipo);

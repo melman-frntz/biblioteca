@@ -1,5 +1,13 @@
 package biblioteca.recursos;
 
+/*
+*@author froylan
+*Fecha creacion: 11/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: froylan
+*/
+
+
 import biblioteca.modelo.dao.RecursoDocumentalDAO;
 import biblioteca.modelo.pojo.RecursoDocumental;
 import java.io.IOException;
@@ -25,10 +33,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utilidades.Utilidades;
 
-/**
- * @autor Froylan De Jesus Alvarez Rodriguez
- * @fecha 11/12/2022 
- */
 public class FXMLBuscarRecursoController implements Initializable {
 
     @FXML

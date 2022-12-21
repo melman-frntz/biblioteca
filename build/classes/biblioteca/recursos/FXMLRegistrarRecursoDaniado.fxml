@@ -21,7 +21,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Label layoutX="340.0" layoutY="134.0" text="Buscar recurso por identificador">
+      <Label layoutX="340.0" layoutY="134.0" text="Buscar recurso por identificador o por nombre">
          <font>
             <Font size="18.0" />
          </font>

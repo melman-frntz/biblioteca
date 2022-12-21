@@ -1,5 +1,13 @@
 package biblioteca.recursos;
 
+/*
+*@author franz
+*Fecha creacion: 08/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: froylan
+*/
+
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -75,6 +83,9 @@ public class FXMLControlDeRecursosController implements Initializable {
         habilitarOpciones();
     }
 
+        /*
+         *Esta seccion del programa desactiva las opciones por usuarioBiblioteca actual
+        */
         private void habilitarOpciones(){
         switch(tipoUsuario){
             case 1:

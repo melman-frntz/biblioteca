@@ -1,5 +1,12 @@
 package biblioteca.modelo.dao;
 
+/*
+*@author franz
+*Fecha creacion: 20/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: franz
+*/
+
 import biblioteca.modelo.ConexionBaseDatos;
 import biblioteca.modelo.pojo.Facultad;
 import java.sql.Connection;
@@ -8,12 +15,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author franz
- */
 public class FacultadDAO {
     
+    /*
+     *Esta sección del programa filtra las facultades por campus 
+    */
     public static ArrayList<Facultad> obtenerFacultadPorCampus(int idCampus) throws SQLException{
         ArrayList<Facultad> facultadesBD = null;
         Connection conexionBD = ConexionBaseDatos.abrirConexionBaseDatos();

@@ -1,10 +1,10 @@
 package biblioteca.modelo.pojo;
 
 /*
-    @author Jesús Enrique Fernández González
+    @author enrique
     Fecha creación: 10/12/2022
     Fecha de última modificación: 11/12/2022
-    Último modificador: Jesús Enrique Fernández González
+    Último modificador: enrique
 */
 
 public class UsuarioBiblioteca {

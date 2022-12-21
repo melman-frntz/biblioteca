@@ -1,10 +1,10 @@
 package biblioteca.modelo.dao;
 
 /*
-    @author Jesús Enrique Fernández González
+    @author enrique
     Fecha creación: 10/12/2022
-    Fecha de última modificación: 16/12/2022
-    Último modificador: Jesús Enrique Fernández González
+    Fecha de última modificación: 20/12/2022
+    Último modificador: franz
 */
 
 import biblioteca.modelo.ConexionBaseDatos;

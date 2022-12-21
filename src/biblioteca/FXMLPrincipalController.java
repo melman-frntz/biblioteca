@@ -1,5 +1,13 @@
 package biblioteca;
 
+/*
+*@author franz
+*Fecha creacion: 08/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: froylan
+*/
+
+
 import biblioteca.papeleo.FXMLPapeleoController;
 import biblioteca.prestamos.FXMLControlDePrestamosController;
 import biblioteca.recursos.FXMLControlDeRecursosController;
@@ -69,7 +77,7 @@ public class FXMLPrincipalController implements Initializable {
         cerrarPrincipal();
         mostrarInicioSesion();
     }
-    
+
     private void cargarOpciones(String vista){
         try {                  
             borderPaneLayOut.getChildren().remove(borderPaneLayOut.getCenter()); //Remueve fxml existente del centro
@@ -119,6 +127,9 @@ public class FXMLPrincipalController implements Initializable {
         }
     }
     
+    /*
+     *Esta seccion del programa inicializa el usuarioBiblioteca de la sesion actual
+    */
     public void inicializarTipoUsuario(int tipoUsuario){
         this.tipoUsuario = tipoUsuario;
         

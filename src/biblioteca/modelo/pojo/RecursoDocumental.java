@@ -1,9 +1,12 @@
 package biblioteca.modelo.pojo;
 
-/**
- * @autor Froylan De Jesus Alvarez Rodriguez
- * @Fecha 11/12/2022
- */
+/*
+*@author froylan
+*Fecha creacion: 10/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: franz
+*/
+
 public class RecursoDocumental {
     private int idRecurso;
     private String nombre;

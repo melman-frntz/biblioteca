@@ -1,5 +1,12 @@
 package biblioteca.prestamos;
 
+/*
+*@author franz
+*Fecha creacion: 10/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: franz
+*/
+
 import biblioteca.modelo.dao.CampusDAO;
 import biblioteca.modelo.dao.FacultadDAO;
 import biblioteca.modelo.dao.PrestamoDAO;

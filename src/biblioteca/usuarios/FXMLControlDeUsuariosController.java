@@ -1,5 +1,12 @@
 package biblioteca.usuarios;
 
+/*
+*@author franz
+*Fecha creacion: 08/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: franz
+*/
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;

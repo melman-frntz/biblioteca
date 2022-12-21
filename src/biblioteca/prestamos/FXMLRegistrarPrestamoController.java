@@ -1,5 +1,12 @@
 package biblioteca.prestamos;
 
+/*
+*@author manuel
+*Fecha creacion: 09/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: manuel
+*/
+
 import biblioteca.modelo.dao.PrestamoDAO;
 import biblioteca.modelo.dao.RecursoDocumentalDAO;
 import biblioteca.modelo.dao.UsuarioBibliotecaDAO;
@@ -9,7 +16,6 @@ import biblioteca.modelo.pojo.ResultadoOperacion;
 import biblioteca.modelo.pojo.UsuarioBiblioteca;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -33,11 +39,6 @@ import javafx.stage.Stage;
 import utilidades.Constantes;
 import utilidades.Utilidades;
 
-/**
- * FXML Controller class
- *
- * @author mlgt0
- */
 public class FXMLRegistrarPrestamoController implements Initializable {
 
     @FXML
@@ -106,15 +107,17 @@ public class FXMLRegistrarPrestamoController implements Initializable {
 
     @FXML
     private void clicBtnContinuar(ActionEvent event) {
+        ObservableList usuarioTV = tvUsuario.getItems();
+        ObservableList recursoTV = tvRecursoDocumental.getItems();
         
-        if(tvUsuario.getItems() != null && tvRecursoDocumental.getItems() != null){
+        
+        if(!(usuarioTV.isEmpty()) &&  !(recursoTV.isEmpty())){
             tvUsuario.getSelectionModel().select(0);
             tvRecursoDocumental.getSelectionModel().select(0);
             UsuarioBiblioteca usuario = tvUsuario.getSelectionModel().getSelectedItem();
             try {
                 ArrayList<Prestamo> prestamosBD = PrestamoDAO.obtenerPrestamosPorIdUsuario(usuario.getId());
-                System.out.println(prestamosBD.size());
-                if(prestamosBD.size() < Constantes.LIMITEPRESTAMOS){
+                if(prestamosBD.size() < Constantes. NUMERO_PRESTAMOS_PERMITIDOS){
                     RecursoDocumental recursoDocumental = tvRecursoDocumental.getSelectionModel().getSelectedItem();
                     
                     if(recursoDocumental.getEstado().toLowerCase().equals("disponible")){
@@ -126,6 +129,8 @@ public class FXMLRegistrarPrestamoController implements Initializable {
                                     + "Fecha de devolución: " + formatoFecha.format(fechaEntrega), Alert.AlertType.INFORMATION);
                             tfIdUsuario.setText("");
                             tfIdRecursoDocumental.setText("");
+                            tvRecursoDocumental.getItems().clear();
+                            tvUsuario.getItems().clear();
                         }else{
                             Utilidades.mostrarAlertaSimple("ERROR", registrarPrestamo.getMensaje(), Alert.AlertType.ERROR);
                         }

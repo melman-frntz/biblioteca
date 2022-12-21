@@ -1,5 +1,12 @@
 package biblioteca.modelo.dao;
 
+/*
+*@author franz
+*Fecha creacion: 11/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: froylan
+*/
+
 import biblioteca.modelo.ConexionBaseDatos;
 import biblioteca.modelo.pojo.RecursoDocumental;
 import biblioteca.modelo.pojo.ResultadoOperacion;
@@ -13,11 +20,8 @@ import java.util.ArrayList;
 import javafx.scene.control.Alert;
 import utilidades.Utilidades;
 
-/**
- * @autor Froylan De Jesus Alvarez Rodriguez
- * @fecha 11/12/2022
- */
 public class RecursoDocumentalDAO {
+    
     public static ArrayList<RecursoDocumental> buscarRecursosPorNombre(String nombre) throws SQLException{
         ArrayList<RecursoDocumental> recursosBD = null;
         Connection conexionBD = ConexionBaseDatos.abrirConexionBaseDatos();

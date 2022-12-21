@@ -1,5 +1,12 @@
 package biblioteca.prestamos;
 
+/*
+*@author franz
+*Fecha creacion: 08/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: froylan
+*/
+
 import biblioteca.recursos.FXMLControlDeRecursosController;
 import java.io.IOException;
 import java.net.URL;
@@ -109,6 +116,9 @@ public class FXMLControlDePrestamosController implements Initializable {
         habilitarOpciones();
     }
     
+    /*
+     *Esta seccion del programa desactiva las opciones por usuarioBiblioteca actual
+    */
     private void habilitarOpciones(){
         switch(tipoUsuario){
             case 1:

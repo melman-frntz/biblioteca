@@ -1,5 +1,12 @@
 package biblioteca.modelo.dao;
 
+/*
+*@author franz
+*Fecha creacion: 20/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: franz
+*/
+
 import biblioteca.modelo.ConexionBaseDatos;
 import biblioteca.modelo.pojo.Campus;
 import java.sql.Connection;

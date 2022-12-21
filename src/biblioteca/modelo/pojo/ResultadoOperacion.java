@@ -1,9 +1,13 @@
 package biblioteca.modelo.pojo;
 
-/**
- *
- * @author froyl
- */
+/*
+*@author froylan
+*Fecha creacion: 08/12/2022
+*Fecha de ultima modificacion: 12/12/2022
+*Ultimo modificador: enrique
+*/
+
+
 public class ResultadoOperacion {
     private boolean error;
     private String mensaje;

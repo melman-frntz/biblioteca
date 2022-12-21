@@ -1,5 +1,12 @@
 package biblioteca.recursos;
 
+/*
+*@author froylan
+*Fecha creacion: 11/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: froylan
+*/
+
 import biblioteca.modelo.pojo.RecursoDocumental;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -10,10 +17,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * @author Froylan De Jesus Alvarez Rodriguez
- * @fecha 11/12/2022
- */
 public class FXMLDetallesRecursoController implements Initializable {
 
     @FXML
@@ -54,13 +57,13 @@ public class FXMLDetallesRecursoController implements Initializable {
         tfSeccion.setText(recursoMostrar.getSeccion());
         taDescripcion.setText(recursoMostrar.getDescripcion());
         
-        if(!recursoMostrar.getEditorial().equals("")){
+        if(recursoMostrar.getEditorial() != null){
             tfEditorial.setText(recursoMostrar.getEditorial());
         }else{
             tfEditorial.setText("No aplica.");
         }
         
-        if(!recursoMostrar.getIsbn().equals("")){
+        if(recursoMostrar.getIsbn() != null){
             tfIsbn.setText(recursoMostrar.getIsbn());
         }else{
             tfIsbn.setText("No aplica.");

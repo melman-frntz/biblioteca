@@ -1,5 +1,12 @@
 package biblioteca.modelo.dao;
 
+/*
+*@author manuel
+*Fecha creacion: 10/12/2022
+*Fecha de ultima modificacion: 20/12/2022
+*Ultimo modificador: manuel
+*/
+
 import biblioteca.modelo.ConexionBaseDatos;
 import biblioteca.modelo.pojo.Prestamo;
 import biblioteca.modelo.pojo.ResultadoOperacion;
@@ -143,8 +150,6 @@ public class PrestamoDAO {
                 prepararSentencia.setString(5, "A domicilio");
                 prepararSentencia.setInt(6, idRecurso);
                 prepararSentencia.setInt(7, usuario.getId());
-                System.out.println(usuario.getId());
-                System.out.println(usuario.getIdUsuarioBiblioteca());
                 int filasAfectadas = prepararSentencia.executeUpdate();
                 
                 PreparedStatement consultaPrestamo2 = conexionBD.prepareStatement(consulta2);
